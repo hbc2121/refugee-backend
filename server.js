@@ -21,6 +21,10 @@ app.use(function(req, res, next) {
 });
 */
 
+var fs = require('fs');
+var json = JSON.parse(fs.readFileSync('./questions.json', 'utf8'));
+console.log(json);
+
 app.get('/add', function(request,response){
 });
 

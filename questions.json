@@ -1,4 +1,22 @@
 {
+	"trauma_events" : {
+		"dropdown" : false,
 		"te1" : "Lack of Shelter",
 		"te2" : "Lack of Food or Water"
+	},
+
+	"personal_desc" : {
+		"dropdown" : false,
+		"pd1" : "Please indicate what you consider to be the most hurtful or terrifying events you have experienced, if any. Please specify where and when these events occurred.",
+		"pd2" : "Under your current living situation (i.e. refugee camp, country of resettlement, returned from exile, etc.) what is the worst event that has happened to you, if different from above. Please specify where and when these events occurred."
+
+	},
+
+	"head_injury" : {
+		"dropdown" : true,
+		"hi1" : {"question": "Beatings to the head",
+				 "dropdown": ["Loss of conciousness", "If yes, for how long"]
+
+	}
+}
 }

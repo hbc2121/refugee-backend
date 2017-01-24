@@ -11,7 +11,7 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 });
 
 var error_msg = "{}";
-
+console.log('hi');
 /*
 //enable CORS
 app.use(function(req, res, next) {
@@ -21,9 +21,8 @@ app.use(function(req, res, next) {
 });
 */
 
-var fs = require('fs');
-var json = JSON.parse(fs.readFileSync('./questions.json', 'utf8'));
-console.log(json);
+var config = require('./questions.json');
+console.log(config.te1 + ' ' + config.te2);
 
 app.get('/add', function(request,response){
 });

@@ -28,7 +28,7 @@ app.get('/delete', function(request,response){
 });
 
 app.get('/', function(request, response) {
-	response.send('hey');
+	response.send(mongoUri);
 });
 
 app.listen(process.env.PORT || 3000);

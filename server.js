@@ -27,5 +27,8 @@ app.get('/add', function(request,response){
 app.get('/delete', function(request,response){
 });
 
+app.get('/', function(request, response) {
+	response.send('hey');
+});
 
 app.listen(process.env.PORT || 3000);

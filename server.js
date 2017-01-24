@@ -11,7 +11,7 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 });
 
 var error_msg = "{}";
-console.log('hi');
+
 /*
 //enable CORS
 app.use(function(req, res, next) {
@@ -31,6 +31,7 @@ app.get('/delete', function(request,response){
 });
 
 app.get('/', function(request, response) {
+	console.log('hi');
 	response.send('hey');
   });
 

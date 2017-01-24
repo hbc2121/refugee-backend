@@ -34,4 +34,4 @@ var fs = require("fs");
 var contents fs.readFileSync("questions.json");
 var jsonContent = JSON.parse(contents);
 
-response.send(jsonContent.trauma_events);
+console.log(jsonContent.trauma_events);

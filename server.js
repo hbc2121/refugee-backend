@@ -27,8 +27,11 @@ app.get('/add', function(request,response){
 app.get('/delete', function(request,response){
 });
 
-app.get('/', function(request, response) {
-	response.send('hey');
-});
 
 app.listen(process.env.PORT || 3000);
+
+var fs = require("fs");
+var contents fs.readFileSync("questions.json");
+var jsonContent = JSON.parse(contents);
+
+response.send(jsonContent.trauma_events);

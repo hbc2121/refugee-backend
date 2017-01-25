@@ -1,8 +1,54 @@
 {
+	"basic_info" :{
+		"bi1" : "First Name",
+		"bi2" : "Last Name",
+		"bi3" : "Age",
+		"bi3" : "Home"
+
+	},
+
 	"trauma_events" : {
 		"dropdown" : false,
 		"te1" : "Lack of Shelter",
-		"te2" : "Lack of Food or Water"
+		"te2" : "Lack of Food or Water",
+		"te3" : "Ill health without access to medical care",
+		"te4" : "Confiscation or destruction of personal property",
+		"te5" : "Combat situation (e.g. shelling and grenade attacks)",
+		"te6" : "Forced evacuation under dangerous conditions",
+		"te7" : "Beating to the body",
+		"te8" : "Rape",
+		"te9" : "Other types of sexual abuse or sexual humiliation",
+		"te10" : "Knifing or axing",
+		"te11" : "Torture (deliberate and systematic infliction of physical or mental suffering)",
+		"te12" : "Serious physical injury from combat situation or landmine",
+		"te13" : "Imprisonment",
+		"te14" : "Forced labor (like animal or slave)",
+		"te15" : "Extortion or robbery",
+		"te16" : "Brainwashing",
+		"te17" : "Forced to hide",
+		"te18" : "Kidnapped",
+		"te19" : "Other forced separation from family members",
+		"te20" : "Forced to find and bury bodies",
+		"te21" : "Enforced isolation from others",
+		"te22" : "Someone was forced to betray you and place you at risk of death or injury",
+		"te23" : "Prevented from burying someone",
+		"te24" : "Forced to desecrate or destroy the bodies or graves of deceased persons",
+		"te25" : "Forced to physically harm family member or friend",
+		"te26" : "Forced to physically harm someone who is not family or friend",
+		"te27" : "Forced to destroy someone else's property or possessions",
+		"te28" : "Forced to betray family member or friend, placing them at risk of death or injury",
+		"te29" : "Forced to betray someone who is not family or friend, placing them at risk of death or injury",
+		"te30" : "Murder, or death due to violence, of spouse",
+		"te31" : "Murder, or death due to violence, of child",
+		"te32" : "Murder, or death due to violence, of other family member or friend",
+		"te33" : "Disappearance or kidnapping of spouse",
+		"te34" : "Disappearance or kidnapping of child",
+		"te35" : "Disappearance or kidnapping of other family member or friend",
+		"te36" : "Serious physical injury of family member or friend due to combat situation or landmine",
+		"te37" : "Witness beatings to head or body",
+		"te38" : "Witness torture",
+		"te39" : "Witness killing/murder",
+		"te40" : "Witness rape or sexual abuse"
 	},
 
 	"personal_desc" : {
@@ -17,6 +63,10 @@
 		"hi1" : {"question": "Beatings to the head",
 				 "dropdown": ["Loss of conciousness", "If yes, for how long"]
 
+		},
+		"hi2" : {"question": "Beatings to the head!!!",
+		"dropdown": ["Loss of conciousness", "If yes, for how long"]
+
+		}
 	}
-}
 }

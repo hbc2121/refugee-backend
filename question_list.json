@@ -199,6 +199,210 @@
 			"id" : "te40",
 			"body" : "Witness rape or sexual abuse"
 		}				
+	],
+
+	"trauma_symptoms" : [
+
+		{
+			"id" : "ts1",
+			"body" : "Recurrent thoughts or memories of the most hurtful or terrifying events"
+		},
+
+		{
+			"id" : "ts2",
+			"body" : "Feeling as though the event is happening again "
+		},
+
+		{
+			"id" : "ts3",
+			"body" : "Recurrent nightmares"
+		},
+
+		{
+			"id" : "ts4",
+			"body" : "Feeling detached or withdrawn from people"
+		},
+
+		{
+			"id" : "ts5",
+			"body" : "Unable to feel emotions"
+		},
+
+		{
+			"id" : "ts6",
+			"body" : "Feeling jumpy, easily startled"
+		},
+
+		{
+			"id" : "ts7",
+			"body" : "Difficulty concentrating"
+		},
+
+		{
+			"id" : "ts8",
+			"body" : "Trouble sleeping "
+		},
+
+		{
+			"id" : "ts9",
+			"body" : "Feeling on guard"
+		},
+
+		{
+			"id" : "ts10",
+			"body" : "Feeling irritable or having outbursts of anger"
+		},
+
+		{
+			"id" : "ts11",
+			"body" : "Avoiding activities that remind you of the traumatic or hurtful event "
+		},
+
+		{
+			"id" : "ts12",
+			"body" : "Inability to remember parts of the most hurtful or traumatic events "
+		},
+
+		{
+			"id" : "ts13",
+			"body" : "Less interest in daily activities"
+		},
+
+		{
+			"id" : "ts14",
+			"body" : "Feeling as if you don’t have a future"
+		},
+
+		{
+			"id" : "ts15",
+			"body" : "Avoiding thoughts or feelings associated with the traumatic or hurtful events "
+		},
+
+		{
+			"id" : "ts16",
+			"body" : "Sudden emotional or physical reaction when reminded of the most hurtful or traumatic events"
+		},
+
+		{
+			"id" : "ts17",
+			"body" : "Feeling that you have less skills than you had before"
+		},
+
+		{
+			"id" : "ts18",
+			"body" : "Having difficulty dealing with new situations"
+		},
+
+		{
+			"id" : "ts19",
+			"body" : "Feeling exhausted "
+		},
+
+		{
+			"id" : "ts20",
+			"body" : "Bodily pain"
+		},
+
+		{
+			"id" : "ts21",
+			"body" : "Troubled by physical problem(s)"
+		},
+
+		{
+			"id" : "ts22",
+			"body" : "Poor memory"
+		},
+
+		{
+			"id" : "ts23",
+			"body" : "Finding out or being told by other people that you have done something that you cannot remember"
+		},
+
+		{
+			"id" : "ts24",
+			"body" : "Difficulty paying attention"
+		},
+
+		{
+			"id" : "ts25",
+			"body" : "Feeling as if you are split into two people and one of you is watching what the other is doing"
+		},
+
+		{
+			"id" : "ts26",
+			"body" : "Feeling unable to make daily plans"
+		},
+
+		{
+			"id" : "ts27",
+			"body" : "Blaming yourself for things that have happened"
+		},
+
+		{
+			"id" : "ts28",
+			"body" : "Feeling guilty for having survived"
+		},
+
+		{
+			"id" : "ts29",
+			"body" : "Hopelessness"
+		},
+
+		{
+			"id" : "ts30",
+			"body" : "Feeling ashamed of the hurtful or traumatic events that have happened to you"
+		},
+		
+		{
+			"id" : "ts31",
+			"body" : "Feeling that people do not understand what happened to you "
+		},
+
+		{
+			"id" : "ts32",
+			"body" : "Feeling others are hostile to you "
+		},
+
+		{
+			"id" : "ts33",
+			"body" : "Feeling that you have no one to rely upon"
+		},
+
+		{
+			"id" : "ts34",
+			"body" : "Feeling that someone you trusted betrayed you"
+		},
+
+		{
+			"id" : "ts35",
+			"body" : "Feeling humiliated by your experience"
+		},
+
+		{
+			"id" : "ts36",
+			"body" : "Feeling no trust in others"
+		},
+
+		{
+			"id" : "ts37",
+			"body" : "Feeling powerless to help others"
+		},
+
+		{
+			"id" : "ts38",
+			"body" : "Spending time thinking why these events happened to you"
+		},
+
+		{
+			"id" : "ts39",
+			"body" : "Feeling that you are the only one that suffered these events"
+		},
+
+		{
+			"id" : "ts40",
+			"body" : "Feeling a need for revenge"
+		}
+
 	]
 }
 	

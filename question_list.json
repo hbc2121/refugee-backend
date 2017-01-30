@@ -1,26 +1,4 @@
 	{
-		"basic_info" : [
-
-		{
-			"id" : "bi1",
-			"body" : "First Name"
-		},
-
-		{
-			"id" : "bi2",
-			"body" : "Last Name" 
-		},
-
-		{
-			"id" : "bi3",
-			"body" : "Age"
-		},
-
-		{
-			"id" : "bi4",
-			"body" : "Home"	
-		}
-	],
  
  	"trauma_events": [
 

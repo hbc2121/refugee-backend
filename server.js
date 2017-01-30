@@ -26,6 +26,7 @@ console.log(config.te1 + ' ' + config.te2);
 
 app.post('/addPatient', function(request,response) {
 	db.collection('patients').insert(request.body);
+	response.send(":)");
 });
 
 

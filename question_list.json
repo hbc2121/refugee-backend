@@ -1,0 +1,206 @@
+	{
+		"basic_info" : [
+
+		{
+			"id" : "bi1",
+			"body" : "First Name"
+		},
+
+		{
+			"id" : "bi2",
+			"body" : "Last Name" 
+		},
+
+		{
+			"id" : "bi3",
+			"body" : "Age"
+		},
+
+		{
+			"id" : "bi4",
+			"body" : "Home"	
+		}
+	],
+ 
+ 	"trauma_events": [
+
+		{
+			"id" : "te1" ,
+			"body" : "Lack of Shelter"
+		},
+
+		{
+			"id" : "te2",
+			"body" : "Lack of Food or Water"
+		},
+
+		{
+			"id" : "te3",
+			"body" : "Ill health without access to medical care"
+		},	
+
+		{
+			"id" : "te4",
+			"body" : "Confiscation or destruction of personal property"
+		},
+
+		{
+			"id" : "te5",
+			"body" : "Combat situation (e.g. shelling and grenade attacks)"
+		},
+
+		{
+			"id" : "te6",
+			"body" : "Forced evacuation under dangerous conditions"
+		},
+
+		{
+			"id" : "te7",
+			"body" : "Beating to the body"
+		},
+
+		{
+			"id" : "te8",
+			"body" : "Rape"
+		},
+
+		{
+			"id" : "te9",
+			"body" : "Other types of sexual abuse or sexual humiliation"
+		},
+
+		{
+			"id" : "te10",
+			"body" : "Knifing or axing"
+		},
+
+		{
+			"id" : "te11",
+			"body" : "Torture (deliberate and systematic infliction of physical or mental suffering)"
+		},	
+
+		{
+			"id" : "te12" ,
+			"body" : "Serious physical injury from combat situation or landmine"
+		},
+		{
+			"id" : "te13",
+			"body" : "Imprisonment"
+		},
+		{
+			"id" : "te14",
+			"body" : "Forced labor (like animal or slave)"
+		},
+
+		{
+			"id" : "te15",
+			"body" : "Extortion or robbery"
+		},
+		{
+			"id" : "te16",
+			"body" : "Brainwashing"
+		},
+		{
+			"id" : "te17",
+			"body" : "Forced to hide"
+		},
+		{
+			"id" : "te18",
+			"body" : "Kidnapped"
+		},
+		{
+			"id" : "te19",
+			"body" : "Other forced separation from family members"
+		},
+		{
+			"id" : "te20",
+			"body" : "Forced to find and bury bodies"
+		},
+		{
+			"id" : "te21",
+			"body" : "Enforced isolation from others"
+		},																	
+		
+		{
+			"id" : "te22",
+			"body" : "Someone was forced to betray you and place you at risk of death or injury"
+		},
+		{
+			"id" : "te23",
+			"body" : "Prevented from burying someone"
+		},
+
+		{
+			"id" : "te24",
+			"body" : "Forced to desecrate or destroy the bodies or graves of deceased persons"
+		},
+		{
+			"id" : "te25",
+			"body" : "Forced to physically harm family member or friend"
+		},
+		{
+			"id" : "te26",
+			"body" : "Forced to physically harm someone who is not family or friend"		},
+		{
+			"id" : "te27",
+			"body" : "Forced to destroy someone else's property or possessions"
+		},
+		{
+			"id" : "te28",
+			"body" : "Forced to betray family member or friend, placing them at risk of death or injury"
+		},
+		{
+			"id" : "te29",
+			"body" : "Forced to betray someone who is not family or friend, placing them at risk of death or injury"
+		},
+		{
+			"id" : "te30",
+			"body" : "Murder, or death due to violence, of spouse"
+		},
+		{
+			"id" : "te31",
+			"body" : "Murder, or death due to violence, of child"
+		},
+
+		{
+			"id" : "te32" ,
+			"body" : "Murder, or death due to violence, of other family member or friend"
+		},
+		{
+			"id" : "te33",
+			"body" : "Disappearance or kidnapping of spouse"
+		},
+		{
+			"id" : "te34",
+			"body" : "Disappearance or kidnapping of child"
+		},
+
+		{
+			"id" : "te35",
+			"body" : "Disappearance or kidnapping of other family member or friend"
+		},
+		{
+			"id" : "te36",
+			"body" : "Serious physical injury of family member or friend due to combat situation or landmine"
+		},
+		{
+			"id" : "te37",
+			"body" : "Witness beatings to head or body"
+		},
+		{
+			"id" : "te38",
+			"body" : "Witness torture"
+		},
+		{
+			"id" : "te39",
+			"body" : "Witness killing/murder"
+		},
+		{
+			"id" : "te40",
+			"body" : "Witness rape or sexual abuse"
+		}				
+	]
+}
+	
+
+

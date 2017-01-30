@@ -21,8 +21,20 @@ app.use(function(req, res, next) {
 });
 */
 
-var config = require('./questions.json');
-console.log(config.te1 + ' ' + config.te2);
+app.get('/get', function(request,response){
+
+ var fs = require('fs');
+ var content = fs.readFileSync('question_list.json', 'utf8');
+ 
+ response.setHeader('Content-Type', 'application/json');
+ response.send((content));
+
+});
+
+app.get('/getall', function(request,response){
+	
+	
+});
 
 app.get('/add', function(request,response){
 });
@@ -31,7 +43,6 @@ app.get('/delete', function(request,response){
 });
 
 app.get('/', function(request, response) {
-	console.log('hi');
 	response.send('hey');
   });
 

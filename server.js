@@ -3,7 +3,8 @@ var express = require('express');
 var app = express();
 
 // Mongo initialization and connect to database
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL|| 'mongodb://localhost/grocery';
+//var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
+var mongoUri = "mongodb://heroku_5qlth62f:heroku_5qlth62f@ds127389.mlab.com:27389/heroku_5qlth62f";
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 	db = databaseConnection;

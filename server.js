@@ -25,16 +25,33 @@ app.post('/addPatient', function(request,response) {
 	});
 });
 
+
+app.get('/get', function(request,response){
+
+
+});
+
+app.get('/getall', function(request,response){
+	
+	
+});
+
+
 app.get('/deletePatient', function(request,response) {
 	
 });
 
 app.get('/getQuestions', function(request,response) {
 	
+	var fs = require('fs');
+	var content = fs.readFileSync('question_list.json', 'utf8');
+	 
+	response.setHeader('Content-Type', 'application/json');
+	response.send((content));
+	
 });
 
 app.get('/', function(request, response) {
-	console.log('hi');
 	response.send('hey');
 });
 

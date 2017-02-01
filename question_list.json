@@ -5,7 +5,7 @@
  			"id" : "question_type",
  			"body" : "bool",
  			"dropdown" : "no"
- 		}
+ 		},
 
 		{
 			"id" : "te1" ,
@@ -193,12 +193,12 @@
 		{
 			"id" : "question_type",
 			"body" : "paragraph"
-		}
+		},
 
 		{
 			"id" : "pd1",
 			"body" : "Please indicate what you consider to be the most hurtful or terrifying events you have experienced, if any. Please specify where and when these events occurred."
-		}
+		},
 
 		{
 			"id" : "pd2",
@@ -212,7 +212,7 @@
 			"id" : "question_type",
 			"body" : "bool",
 			"dropdown" : "yes"
-		}
+		},
 
 		{
 			"id": "hi1",
@@ -504,9 +504,9 @@
 			"body" : "Feeling a need for revenge"
 		}
 
-	]
+	],
 
-	"tortue_history" [
+	"tortue_history" : [
 
 		{
 			"id" : "question_type",
@@ -624,7 +624,7 @@
 		{
 			"id" : "th28",
 			"body" : "Other (specify in comments)"
-		},														
+		}													
 	],
 
 	"hopkins_symptom_checklist_part1" : [
@@ -632,7 +632,7 @@
 		{
 			"id" : "question_type",
 			"body" : "scale"
-		}
+		},
 
 		{
 			"id" : "hs1",
@@ -690,7 +690,7 @@
 		{
 			"id" : "question_type",
 			"body" : "scale"
-		}
+		},
 
 		{
 			"id" : "hs11",

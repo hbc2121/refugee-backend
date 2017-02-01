@@ -295,7 +295,7 @@
 
 	],
 
-	"trauma_symptoms" : [
+	"trauma_symptoms_DSM-IV" : [
 
 		{ 	"id" : "question_type",
 			"body" : "scale"
@@ -381,7 +381,9 @@
 			"id" : "ts16",
 			"body" : "Sudden emotional or physical reaction when reminded of the most hurtful or traumatic events"
 		},
+	],
 
+	"trauma_symptoms_general" : [
 		{
 			"id" : "ts17",
 			"body" : "Feeling that you have less skills than you had before"

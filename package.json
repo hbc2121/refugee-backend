@@ -4,6 +4,8 @@
 	"dependencies": {
 		"express": "latest",
 		"mongodb": "latest",
-		"body-parser": "latest"
+		"body-parser": "latest",
+		"pdfkit": "latest",
+		"nodemailer": "latest"
 	}
 }

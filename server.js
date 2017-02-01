@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var pdfkit = require('pdfkit');
 var app = express();
 
 // Mongo initialization and connect to database
@@ -52,6 +53,13 @@ app.get('/getQuestions', function(request,response) {
 	 
 	response.setHeader('Content-Type', 'application/json');
 	response.send((content));
+	
+});
+
+app.post('/genPDF', function(request, response) {
+	var email = request.body.email;
+	var obj = request.body.doc;
+	var doc = new pdfkit();
 	
 });
 

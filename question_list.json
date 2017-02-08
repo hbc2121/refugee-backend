@@ -633,7 +633,7 @@
 		}													
 	],
 
-	"Hopkins Symptom Checklist Part 1" : [
+	"Hopkins Symptom Checklist Part1" : [
 
 		{
 			"id" : "question_type",
@@ -691,7 +691,7 @@
 		}
 	],
 
-	"Hopkins Symptom Checklist_ Part 2" : [
+	"Hopkins Symptom Checklist Part2" : [
 
 		{
 			"id" : "question_type",

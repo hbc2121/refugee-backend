@@ -1,6 +1,6 @@
 	{
  
- 	"trauma_events": [
+ 	"Trauma Events": [
  		{
  			"id" : "question_type",
  			"body" : "bool",
@@ -189,7 +189,7 @@
 
 	],
 
-	"personal_desc" : [
+	"Personal Description" : [
 		{
 			"id" : "question_type",
 			"body" : "paragraph"
@@ -206,7 +206,7 @@
 		}
 	],
 
-	"head_injury" : [
+	"Head Injury" : [
 
 		{
 			"id" : "question_type",
@@ -220,7 +220,7 @@
 			"dropdown" : [
 					{
 						"question_type" : "bool" ,
-						"body" : "Loss of conciousness?"
+						"body" : "Loss of consciousness?"
 					},	
 					{
 						"question_type" : "time",
@@ -235,7 +235,7 @@
 			"dropdown" : [
 					{
 						"question_type" : "bool" ,
-						"body" : "Loss of conciousness?"
+						"body" : "Loss of consciousness?"
 					},	
 					{
 						"question_type" : "time",
@@ -250,7 +250,7 @@
 			"dropdown" : [
 					{
 						"question_type" : "bool" ,
-						"body" : "Loss of conciousness?"
+						"body" : "Loss of consciousness?"
 					},	
 					{
 						"question_type" : "time",
@@ -265,7 +265,7 @@
 			"dropdown" : [
 					{
 						"question_type" : "bool" ,
-						"body" : "Loss of conciousness?"
+						"body" : "Loss of consciousness?"
 					},	
 					{
 						"question_type" : "time",
@@ -295,7 +295,7 @@
 
 	],
 
-	"trauma_symptoms_DSM-IV" : [
+	"Trauma Symptoms DSM-IV" : [
 
 		{ 	"id" : "question_type",
 			"body" : "scale"
@@ -383,7 +383,7 @@
 		}
 	],
 
-	"trauma_symptoms_general" : [
+	"Trauma Symptoms General" : [
 
 		{ 	"id" : "question_type",
 			"body" : "scale"
@@ -512,7 +512,7 @@
 
 	],
 
-	"tortue_history" : [
+	"Torture History" : [
 
 		{
 			"id" : "question_type",
@@ -609,7 +609,7 @@
 		},
 		{
 			"id" : "th23",
-			"body" : "Throwing urine or feces at victims or being ,ade to throw it at other prisoners"
+			"body" : "Throwing urine or feces at victims or being made to throw it at other prisoners"
 		},
 		{
 			"id" : "th24",
@@ -633,7 +633,7 @@
 		}													
 	],
 
-	"hopkins_symptom_checklist_part1" : [
+	"Hopkins Symptom Checklist Part 1" : [
 
 		{
 			"id" : "question_type",
@@ -691,7 +691,7 @@
 		}
 	],
 
-	"hopkins_symptom_checklist_part2" : [
+	"Hopkins Symptom Checklist_ Part 2" : [
 
 		{
 			"id" : "question_type",

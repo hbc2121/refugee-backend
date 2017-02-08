@@ -98,5 +98,15 @@ app.post('/genPDF', function(request, response) {
 	});
 });
 
+app.get('/getQuestions', function(request,response) {
+	
+	var fs = require('fs');
+	var content = fs.readFileSync('question_list.json', 'utf8');
+	 
+	response.setHeader('Content-Type', 'application/json');
+	response.send((content));
+	
+});
+
 app.listen(process.env.PORT || 3000);
 

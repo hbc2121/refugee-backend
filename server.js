@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 var error_msg = "{}";
 var config = require('./question_list.json');
-
+/*
 app.post('/addPatient', function(request,response) {
 	db.collection('patients').insert(request.body);
 	response.send(":)");
@@ -56,7 +56,7 @@ app.get('/getQuestions', function(request,response) {
 	response.send((content));
 	
 });
-
+*/
 // TODO: could somebody spam this function and crash the server?
 // 	--> how can we ensure only one PDF request is made at a time?
 app.post('/genPDF', function(request, response) {
@@ -96,10 +96,6 @@ app.post('/genPDF', function(request, response) {
 		response.setHeader('Content-Disposition', 'attachment; filename=output.pdf');
 		response.download(__dirname + '/output.pdf');
 	});
-});
-
-app.get('/', function(request, response) {
-	response.send('hey');
 });
 
 app.listen(process.env.PORT || 3000);

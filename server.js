@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var pdfkit = require('pdfkit');
 var fs = require('fs');
 var app = express();
+var path = require('path');
 
 // Mongo initialization and connect to database
 //var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
@@ -55,31 +56,48 @@ app.get('/getQuestions', function(request,response) {
 	response.send((content));
 	
 });
-/*
-function printObject(object) {
-	if (object) {
-		for (property in object) {
-			console.log(property + ": " + object[property]);	
-		}
-	}
-}
 
 // TODO: could somebody spam this function and crash the server?
 // 	--> how can we ensure only one PDF request is made at a time?
 app.post('/genPDF', function(request, response) {
-	//var email = request.body.email;
-	//var obj = request.body.doc;
-	printObject(request.body);
 	// generate PDF from object
 	var doc = new pdfkit();
-	doc.pipe(fs.createWriteStream('output.pdf')); //literally no idea if this will work
-	//for (property in request.body) {
-		doc.font('fonts/LiberationSans-Regular.ttf').fontSize(12).text(JSON.stringify(request.body, null, 2));
-	//}
-	response.send(":)");
+	var tab = '        ';
+	var writeStream = fs.createWriteStream('output.pdf');
+	doc.pipe(writeStream); //literally no idea if this will work
+
+	for (key in request.body) {
+		var questions = request.body[key]['questions'];
+		doc.font('fonts/LiberationSans-Bold.ttf')
+			.fontSize(12)
+			.text(request.body[key]['category']);
+		for (qad in questions) {
+			
+			doc.font('fonts/LiberationSans-Regular.ttf')
+			   .fontSize(12)
+			   .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);
+			if (questions[qad]['dropdown']) {
+				for (info in questions[qad]['dropdown']) {
+					var dropdown = questions[qad]['dropdown'][info];
+					doc.font('fonts/LiberationSans-Regular.ttf')
+					   .fontSize(12)
+					   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
+				}
+			}
+		}
+		doc.text('\n');
+	}
+	
 	doc.end();
+	writeStream.on('finish', function() {
+		var stat = fs.statSync('output.pdf');
+		response.setHeader('Content-Length', stat.size);
+		response.setHeader('Content-Type', 'application/pdf');
+		response.setHeader('Content-Disposition', 'attachment; filename=output.pdf');
+		response.download(__dirname + '/output.pdf');
+	});
 });
-*/
+
 app.get('/', function(request, response) {
 	response.send('hey');
 });

@@ -59,7 +59,7 @@ app.get('/getQuestions', function(request,response) {
 */
 // TODO: could somebody spam this function and crash the server?
 // 	--> how can we ensure only one PDF request is made at a time?
-app.post('/genPDF', function(request, response) {
+app.post('/genPDF', function(request, response, email) {
 	// generate PDF from object
 	var doc = new pdfkit();
 	var tab = '        ';
@@ -95,6 +95,36 @@ app.post('/genPDF', function(request, response) {
 		response.setHeader('Content-Type', 'application/pdf');
 		response.setHeader('Content-Disposition', 'attachment; filename=output.pdf');
 		response.download(__dirname + '/output.pdf');
+
+	});
+
+	'use strict';
+	const nodemailer = require('nodemailer');
+
+	// create reusable transporter object using the default SMTP transport
+	let transporter = nodemailer.createTransport({
+	    service: 'gmail',
+	    auth: {
+	        user: 'htqr2017@gmail.com',
+	        pass: 'tuftscapstone'
+	    }
+	});
+
+	// setup email data with unicode symbols
+	let mailOptions = {
+	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
+	    to: email, // list of receivers
+	    subject: 'Test', // Subject line
+	    text: 'Hello world ?', // plain text body
+	    html: '<b>Hello world ?</b>' // html body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, (error, info) => {
+	    if (error) {
+	        return console.log(error);
+	    }
+	    console.log('Message %s sent: %s', info.messageId, info.response);
 	});
 });
 

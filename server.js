@@ -110,12 +110,12 @@ app.post('/genPDF', function(request, response) {
 	    }
 	});
 
-	console.log(request.body);
 	
+
 	// setup email data with unicode symbols
 	let mailOptions = {
 	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
-	    to: request.body.email, // list of receivers
+	    to: JSON.stringify(request.body.email), // list of receivers
 	    subject: 'Test', // Subject line
 	    text: 'Hello world ?', // plain text body
 	    html: '<b>Hello world ?</b>' // html body

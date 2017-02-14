@@ -117,20 +117,20 @@ app.post('/genPDF', function(request, response) {
 	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
 	    to: 'daniellezelin@gmail.com', // list of receivers
 	    subject: 'HTQR Results', // Subject line
-	    text: "Hi" // plain text body
-	    attachments: [{
-    	filename: 'output.pdf',
-    	path: __dirname + '/output.pdf'
-    	contentType: 'application/pdf'
-  		}], function (err, info) {
-    		 if(err){
-      			console.error(err);
-       			res.send(err);
-     		}	
-     		else{
-       			console.log(info);
-       			res.send(info);
-     		}
+	    text: JSON.stringify(response.body), // plain text body
+	   //  attachments: [{
+    // 	filename: 'output.pdf',
+    // 	path: __dirname + '/output.pdf'
+    // 	contentType: 'application/pdf'
+  		// }], function (err, info) {
+    // 		 if(err){
+    //   			console.error(err);
+    //    			res.send(err);
+    //  		}	
+    //  		else{
+    //    			console.log(info);
+    //    			res.send(info);
+    //  		}
 	};
 
 	// send mail with defined transport object

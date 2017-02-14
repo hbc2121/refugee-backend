@@ -117,7 +117,7 @@ app.post('/genPDF', function(request, response) {
 	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
 	    to: 'htqr2017@gmail.com', // list of receivers
 	    subject: 'HTQR Results', // Subject line
-	    text: 'HI', // plain text body
+	    text: 'HI' // plain text body
 	    //html: '<object data="output.pdf" type="application/pdf">'
 	   //  attachments: [{
     // 	filename: 'output.pdf',

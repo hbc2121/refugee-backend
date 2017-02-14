@@ -118,12 +118,12 @@ app.post('/genPDF', function(request, response) {
 	    to: 'hbc2121@gmail.com', // list of receivers
 	    subject: 'HTQR Results', // Subject line
 	    text: 'HI', // plain text body
-	    html: '<object data="output.pdf" type="application/pdf">'
-	   //  attachments: [{
-    // 	filename: 'output.pdf',
-    // 	path: 'output.pdf'
-    // 	contentType: 'application/pdf'
-  		// }], function (err, info) {
+	    //html: '<object data="output.pdf" type="application/pdf">'
+	    attachments: [{
+    	filename: 'output.pdf',
+    	path: 'output.pdf'
+  		}] 
+  		//function (err, info) {
     // 		 if(err){
     //   			console.error(err);
     //    			res.send(err);

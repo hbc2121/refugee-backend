@@ -118,19 +118,19 @@ app.post('/genPDF', function(request, response) {
 	    to: 'hbc2121@gmail.com', // list of receivers
 	    subject: 'HTQR Results', // Subject line
 	    text: 'HI', // plain text body
-	    attachments: [{
-    	filename: 'output.pdf',
-    	path: 'output.pdf'
-    	contentType: 'application/pdf'
-  		}], function (err, info) {
-    		 if(err){
-      			console.error(err);
-       			res.send(err);
-     		}	
-     		else{
-       			console.log(info);
-       			res.send(info);
-     		}
+	   //  attachments: [{
+    // 	filename: 'output.pdf',
+    // 	path: 'output.pdf'
+    // 	contentType: 'application/pdf'
+  		// }], function (err, info) {
+    // 		 if(err){
+    //   			console.error(err);
+    //    			res.send(err);
+    //  		}	
+    //  		else{
+    //    			console.log(info);
+    //    			res.send(info);
+    //  		}
 	};
 
 	// send mail with defined transport object

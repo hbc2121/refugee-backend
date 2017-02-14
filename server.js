@@ -115,22 +115,22 @@ app.post('/genPDF', function(request, response) {
 	// setup email data with unicode symbols
 	let mailOptions = {
 	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
-	    to: 'daniellezelin@gmail.com', // list of receivers
+	    to: 'hbc2121@gmail.com', // list of receivers
 	    subject: 'HTQR Results', // Subject line
-	    text: JSON.stringify(response.email), // plain text body
-	   //  attachments: [{
-    // 	filename: 'output.pdf',
-    // 	path: __dirname + '/output.pdf'
-    // 	contentType: 'application/pdf'
-  		// }], function (err, info) {
-    // 		 if(err){
-    //   			console.error(err);
-    //    			res.send(err);
-    //  		}	
-    //  		else{
-    //    			console.log(info);
-    //    			res.send(info);
-    //  		}
+	    text: 'HI', // plain text body
+	    attachments: [{
+    	filename: 'output.pdf',
+    	path: 'output.pdf'
+    	contentType: 'application/pdf'
+  		}], function (err, info) {
+    		 if(err){
+      			console.error(err);
+       			res.send(err);
+     		}	
+     		else{
+       			console.log(info);
+       			res.send(info);
+     		}
 	};
 
 	// send mail with defined transport object

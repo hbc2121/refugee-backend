@@ -70,20 +70,21 @@ app.post('/genPDF', function(request, response) {
 		var questions = request.body[key]['questions'];
 		doc.font('fonts/LiberationSans-Bold.ttf')
 			.fontSize(12)
-			.text(request.body[key]['category']);
+			.text('TESTING');
+			// .text(request.body[key]['category']);
 		for (qad in questions) {
-			doc.text('TESTING');
-			// doc.font('fonts/LiberationSans-Regular.ttf')
-			//    .fontSize(12)
-			//    .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);
-			// if (questions[qad]['dropdown']) {
-			// 	for (info in questions[qad]['dropdown']) {
-			// 		var dropdown = questions[qad]['dropdown'][info];
-			// 		doc.font('fonts/LiberationSans-Regular.ttf')
-			// 		   .fontSize(12)
-			// 		   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
-			// 	}
-			// }
+			
+			doc.font('fonts/LiberationSans-Regular.ttf')
+			   .fontSize(12)
+			   .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);
+			if (questions[qad]['dropdown']) {
+				for (info in questions[qad]['dropdown']) {
+					var dropdown = questions[qad]['dropdown'][info];
+					doc.font('fonts/LiberationSans-Regular.ttf')
+					   .fontSize(12)
+					   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
+				}
+			}
 		}
 		doc.text('\n');
 	}

@@ -70,7 +70,7 @@ app.post('/genPDF', function(request, response) {
 		var questions = request.body[key]['questions'];
 		doc.font('fonts/LiberationSans-Bold.ttf')
 			.fontSize(12)
-			.text('TESTING');
+			.text(questions);
 			// .text(request.body[key]['category']);
 		for (qad in questions) {
 			

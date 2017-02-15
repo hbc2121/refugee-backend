@@ -72,18 +72,18 @@ app.post('/genPDF', function(request, response) {
 			.fontSize(12)
 			.text(request.body[key]['category']);
 		for (qad in questions) {
-			
-			doc.font('fonts/LiberationSans-Regular.ttf')
-			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);
-			if (questions[qad]['dropdown']) {
-				for (info in questions[qad]['dropdown']) {
-					var dropdown = questions[qad]['dropdown'][info];
-					doc.font('fonts/LiberationSans-Regular.ttf')
-					   .fontSize(12)
-					   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
-				}
-			}
+			doc.text('TESTING');
+			// doc.font('fonts/LiberationSans-Regular.ttf')
+			//    .fontSize(12)
+			//    .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);
+			// if (questions[qad]['dropdown']) {
+			// 	for (info in questions[qad]['dropdown']) {
+			// 		var dropdown = questions[qad]['dropdown'][info];
+			// 		doc.font('fonts/LiberationSans-Regular.ttf')
+			// 		   .fontSize(12)
+			// 		   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
+			// 	}
+			// }
 		}
 		doc.text('\n');
 	}
@@ -120,7 +120,7 @@ app.post('/genPDF', function(request, response) {
 	    text: 'Attached is a PDF of the HTQR Results. Thank You',
 	   	 attachments : [{
 	   	 	filename: 'output.pdf',
-            }]
+            path: __dirname + '/output.pdf'}]
             
 	};
 

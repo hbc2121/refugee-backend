@@ -67,11 +67,10 @@ app.post('/genPDF', function(request, response) {
 	doc.pipe(writeStream); //literally no idea if this will work
 
 	for (key in request.body) {
-		var questions = request.body[key];
-		// var questions = request.body[key]['questions'];
+		var questions = request.body[key]['questions'];
 		doc.font('fonts/LiberationSans-Bold.ttf')
 			.fontSize(12)
-			.text(questions);
+			.text(request.body[key]);
 			// .text(request.body[key]['category']);
 		for (qad in questions) {
 			

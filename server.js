@@ -63,18 +63,26 @@ app.post('/genPDF', function(request, response) {
 	var doc = new pdfkit();
 	var tab = '        ';
 	var writeStream = fs.createWriteStream('output.pdf');
-	doc.pipe(writeStream); //literally no idea if this will work
+	doc.pipe(writeStream); 
+
+		doc.text(Date.now() + '\n') //adds date to top of page 
+			.fontSize(12);
+
+		doc.font(LiberationSans-BoldItalic.ttf)
+			.fontSize(24)
+			.text('HTQR and Hopkins Symptom Checklist Results');
 
 	for (key in request.body) {
 		var questions = request.body[key]['questions'];
 		doc.font('fonts/LiberationSans-Bold.ttf')
 			.fontSize(12)
-			.text(request.body[key]['category']);
+			.text(request.body[key]['category']); //prints categories 
+
 		for (qad in questions) {
-			var words = ["not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"];
+			var words = ["not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ' + words[questions[qad]['answer']]);
+			   .text(tab + questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n'); //prints questions and answers
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
 					var dropdown = questions[qad]['dropdown'][info];
@@ -110,7 +118,7 @@ app.post('/genPDF', function(request, response) {
 		    from: '"HTQR" <htqr2017@gmail.com>', // sender address
 		    to: request.query.email, // list of receivers
 		    subject: 'HTQR Results', // Subject line
-		    text: 'Attached is a PDF with the survey results. Thank You',
+		    text: 'Attached is a PDF with the survey results. Thank You \n',
 			 attachments : [{
 				filename: 'output.pdf',
 		    		path: __dirname + '/output.pdf'}]

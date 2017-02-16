@@ -68,7 +68,7 @@ app.post('/genPDF', function(request, response) {
 		doc.text(Date.now() + '\n') //adds date to top of page 
 			.fontSize(12);
 
-		doc.font(LiberationSans-BoldItalic.ttf)
+		doc.font('fonts/LiberationSans-BoldItalic.ttf')
 			.fontSize(24)
 			.text('HTQR and Hopkins Symptom Checklist Results');
 

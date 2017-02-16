@@ -57,8 +57,7 @@ app.get('/getQuestions', function(request,response) {
 	
 });
 */
-// TODO: could somebody spam this function and crash the server?
-// 	--> how can we ensure only one PDF request is made at a time?
+
 app.post('/genPDF', function(request, response) {
 	// generate PDF from object
 	var doc = new pdfkit();

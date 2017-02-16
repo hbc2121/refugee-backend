@@ -71,7 +71,7 @@ app.post('/genPDF', function(request, response) {
 			.fontSize(12)
 			.text(request.body[key]['category']);
 		for (qad in questions) {
-			var words[7] = {"not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"};
+			var words = ["not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"];
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 			   .text(tab + questions[qad]['question'] + ': ' + words[questions[qad]['answer']]);

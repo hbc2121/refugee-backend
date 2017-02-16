@@ -71,7 +71,6 @@ app.post('/genPDF', function(request, response) {
 			.fontSize(12)
 			.text(request.body[key]['category']);
 		for (qad in questions) {
-			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 			   .text(tab + questions[qad]['question'] + ': ' + questions[qad]['answer']);

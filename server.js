@@ -69,7 +69,7 @@ app.post('/genPDF', function(request, response) {
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
-			.fontSize(24)
+			.fontSize(18)
 			.text('HTQR and Hopkins Symptom Checklist Results');
 
 	for (key in request.body) {

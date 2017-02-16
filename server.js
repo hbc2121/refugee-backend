@@ -113,9 +113,9 @@ app.post('/genPDF', function(request, response) {
 	// setup email data with unicode symbols
 	let mailOptions = { 
 	    from: '"HTQR" <htqr2017@gmail.com>', // sender address
-	    to: 'hbc2121@gmail.com', // list of receivers
+	    to: request.query.email, // list of receivers
 	    subject: 'HTQR Results', // Subject line
-	    text: request.query.email,
+	    text: 'Attached is a PDF with the survey results. Thank You',
 	   	 attachments : [{
 	   	 	filename: 'output.pdf',
             path: __dirname + '/output.pdf'}]

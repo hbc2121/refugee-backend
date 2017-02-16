@@ -112,7 +112,7 @@ app.post('/genPDF', function(request, response) {
 		    text: 'Attached is a PDF with the survey results. Thank You',
 			 attachments : [{
 				filename: 'output.pdf',
-		    path: __dirname + '/output.pdf'}]
+		    		path: __dirname + '/output.pdf'}]
 		    
 		};
 

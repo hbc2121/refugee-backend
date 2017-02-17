@@ -61,11 +61,13 @@ app.get('/getQuestions', function(request,response) {
 app.post('/genPDF', function(request, response) {
 	// generate PDF from object
 	var doc = new pdfkit();
+	var d = new Date();
+	var date = d.toLocaleString();
 	var tab = '        ';
 	var writeStream = fs.createWriteStream('output.pdf');
 	doc.pipe(writeStream); 
 
-		doc.text(Date().toLocaleString() + '\n\n') //adds date to top of page 
+		doc.text(date + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')

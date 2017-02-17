@@ -81,7 +81,7 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["NaN","not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
+			var words = ["unanswered","not at all", "a little", "quite a bit", "extremely", "yes", "neutral", "no"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
@@ -90,7 +90,7 @@ app.post('/genPDF', function(request, response) {
 
 		   if (!isNaN(questions[qad]['answer'])){
 		   		doc.text(tab + words[questions[qad]['answer']] + '\n');
-		    } else{
+		    } else {
 		   		doc.text(tab + questions[qad]['answer'] + '\n');
 		    }
 

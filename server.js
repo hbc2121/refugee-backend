@@ -65,7 +65,7 @@ app.post('/genPDF', function(request, response) {
 	var writeStream = fs.createWriteStream('output.pdf');
 	doc.pipe(writeStream); 
 
-		doc.text(Date.toLocaleDateString() + '\n\n') //adds date to top of page 
+		doc.text(Date.toLocaleString() + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')

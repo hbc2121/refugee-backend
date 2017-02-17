@@ -82,15 +82,17 @@ app.post('/genPDF', function(request, response) {
 
 		for (qad in questions) {
 			var words = ["NaN","not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
-
-			if (!isNaN(questions[qad]['answer'])
-				questions[qad]['answer'] = words[questions[qad]['answer']];
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 			   .text(tab + questions[qad]['question'] + ': ')
-			   .font('fonts/LiberationSans-Italic.ttf')
-			   .text(tab + questions[qad]['answer'] + '\n');
+			   .font('fonts/LiberationSans-Italic.ttf');
+
+		   if (!isNaN(questions[qad]['answer'])){
+		   		doc.text(tab + words[questions[qad]['answer']] + '\n');
+		    } else{
+		   		doc.text(tab + questions[qad]['answer'] + '\n');
+		    }
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {

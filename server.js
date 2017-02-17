@@ -81,7 +81,7 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
+			var words = ["NaN","not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)

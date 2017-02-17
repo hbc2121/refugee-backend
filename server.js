@@ -84,7 +84,7 @@ app.post('/genPDF', function(request, response) {
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 			   .text(tab + questions[qad]['question'] + ': ')
-			   .font('LiberationSans-Italic.ttf')
+			   .font('fonts/LiberationSans-Italic.ttf')
 			   .text(words[questions[qad]['answer']] + '\n');
 
 			if (questions[qad]['dropdown']) {
@@ -93,7 +93,7 @@ app.post('/genPDF', function(request, response) {
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
 					   .text(tab.repeat(2) + dropdown['question']+ ': ')
-					   .font('LiberationSans-Italic.ttf')
+					   .font('fonts/LiberationSans-Italic.ttf')
 					   .text(dropdown['answer']);
 				}
 			}

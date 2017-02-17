@@ -65,7 +65,7 @@ app.post('/genPDF', function(request, response) {
 	var writeStream = fs.createWriteStream('output.pdf');
 	doc.pipe(writeStream); 
 
-		doc.text(Date.toLocaleString() + '\n\n') //adds date to top of page 
+		doc.text(Date().toLocaleString() + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
@@ -85,7 +85,7 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 			   .text(tab + questions[qad]['question'] + ': ')
 			   .font('fonts/LiberationSans-Italic.ttf')
-			   .text(words[questions[qad]['answer']] + '\n');
+			   .text(tab + words[questions[qad]['answer']] + '\n');
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
@@ -94,7 +94,7 @@ app.post('/genPDF', function(request, response) {
 					   .fontSize(12)
 					   .text(tab.repeat(2) + dropdown['question']+ ': ')
 					   .font('fonts/LiberationSans-Italic.ttf')
-					   .text(dropdown['answer']);
+					   .text(tab.repeat(2) + dropdown['answer']);
 				}
 			}
 		}

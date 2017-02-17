@@ -65,12 +65,12 @@ app.post('/genPDF', function(request, response) {
 	var writeStream = fs.createWriteStream('output.pdf');
 	doc.pipe(writeStream); 
 
-		doc.text(Date.now() + '\n') //adds date to top of page 
+		doc.text(Date.toLocaleDateString() + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
 			.fontSize(18)
-			.text('HTQR and Hopkins Symptom Checklist Results');
+			.text('HTQR and Hopkins Symptom Checklist Results \n\n');
 
 	for (key in request.body) {
 		var questions = request.body[key]['questions'];
@@ -80,15 +80,21 @@ app.post('/genPDF', function(request, response) {
 
 		for (qad in questions) {
 			var words = ["not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
+			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n'); //prints questions and answers
+			   .text(tab + questions[qad]['question'] + ': ')
+			   .italics()
+			   .text(words[questions[qad]['answer']] + '\n');
+
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab.repeat(2) + dropdown['question'] + ': ' + dropdown['answer']);
+					   .text(tab.repeat(2) + dropdown['question']+ ': ')
+					   .italics()
+					   .text(dropdown['answer']);
 				}
 			}
 		}

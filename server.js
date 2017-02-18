@@ -85,21 +85,26 @@ app.post('/genPDF', function(request, response) {
 			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Unanswered", "No"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
-			   .fontSize(12)
-			   .fontcolor("blue");
+			   .fontSize(12);
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
+		   		var answer = words[questions[qad]['answer']];
+		   		answer.fontcolor("red");
+		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
 		    } else{
-		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
+		    	var answer = questions[qad]['answer'];
+		    	answer.fontcolor("red");
+		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
+					var answer = dropdown['answer'];
+					answer.fontcolor("red");
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' +  dropdown['answer'])
+					   .text(tab + dropdown['question']+ ': ' + answer )
 				}
 			}
 		}

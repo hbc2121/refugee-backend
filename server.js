@@ -60,7 +60,7 @@ app.post('/genPDF', function(request, response) {
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
-		doc.text(date + 'GMT' + '\n\n') //adds date to top of page 
+		doc.text(date + ' GMT' + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
@@ -81,7 +81,7 @@ app.post('/genPDF', function(request, response) {
 
 		   if (!isNaN(questions[qad]['answer'])){
 		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
-		    } else {
+		    } else if{
 		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }
 

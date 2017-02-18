@@ -86,7 +86,7 @@ app.post('/genPDF', function(request, response) {
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .fontColor('blue');
+			   .fontColor("blue");
 
 		   if (!isNaN(questions[qad]['answer'])){
 		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');

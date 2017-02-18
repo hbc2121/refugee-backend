@@ -80,9 +80,11 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']].fontcolor("red") + '\n');
+		   		var answer = words[questions[qad]['answer']];
+		   		answer.fontcolor("red");
+		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
 		    } else {
-		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'].fontcolor("red") + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {
@@ -90,7 +92,7 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' + dropdown['answer'].fontcolor("red"));
+					   .text(tab + dropdown['question']+ ': ' + dropdown['answer']);
 				}
 			}
 		}

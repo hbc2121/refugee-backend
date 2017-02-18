@@ -64,7 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var fname = JSON.stringify(d.getMonth() + 1)+ '-' +  JSON.stringify(d.getDate()) + '-' JSON.stringify(d.getFullYear()) + 'Output.pdf';
+	var fname = JSON.stringify(d.getMonth() + 1)+ '-' +  JSON.stringify(d.getDate()) + '-' +JSON.stringify(d.getFullYear()) + 'Output.pdf';
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 

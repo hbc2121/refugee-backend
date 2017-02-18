@@ -64,8 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var fname = JSON.stringify(d.getMonth() + 1)+ '-' +  JSON.stringify(d.getDate()) + '-' +JSON.stringify(d.getFullYear()) + 'Output.pdf';
-	var writeStream = fs.createWriteStream(fname);
+	var writeStream = fs.createWriteStream('output.pdf');
 	doc.pipe(writeStream); 
 
 		doc.text(date + '\n\n') //adds date to top of page 
@@ -85,20 +84,24 @@ app.post('/genPDF', function(request, response) {
 			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Unanswered", "No"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
-			   .fontSize(12);
+			   .fontSize(12)
+			   .text(tab + questions[qad]['question'] + ': ')
+			   .font('fonts/LiberationSans-Italic.ttf');
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']]+ '\n');
+		   doc.text(tab + words[questions[qad]['answer']] + '\n');
 		    } else{
-		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
-		    }
+		   doc.text(tab + questions[qad]['answer'] + '\n');
+		   }
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' +  dropdown['answer']);
+					   .text(tab.repeat(2) + dropdown['question']+ ': ')
+					   .font('fonts/LiberationSans-Italic.ttf')
+					   .text(tab.repeat(2) + dropdown['answer']);
 				}
 			}
 		}
@@ -107,7 +110,7 @@ app.post('/genPDF', function(request, response) {
 	
 	doc.end();
 	writeStream.on('finish', function() {
-		var stat = fs.statSync(fname);
+		var stat = fs.statSync('output.pdf');
 		
 		'use strict';
 		const nodemailer = require('nodemailer');
@@ -130,8 +133,8 @@ app.post('/genPDF', function(request, response) {
 		    subject: 'HTQR Results', // Subject line
 		    text: 'Attached is a PDF with the survey results. Thank You \n',
 			 attachments : [{
-				filename: fname,
-		    		path: __dirname + '/' + fname}]
+				filename: 'output.pdf',
+		    		path: __dirname + '/output.pdf'}]
 		    
 		};
 

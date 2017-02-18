@@ -80,9 +80,7 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		var answer = words[questions[qad]['answer']];
-		   		answer.fontcolor("red");
-		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
 		    } else {
 		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }

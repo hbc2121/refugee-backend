@@ -64,7 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var writeStream = fs.createWriteStream(date.getMonth() + date.getDate() + 'Output.pdf');
+	var writeStream = fs.createWriteStream(d.getMonth() + d.getDate() + 'Output.pdf');
 	doc.pipe(writeStream); 
 
 		doc.text(date + '\n\n') //adds date to top of page 

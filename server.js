@@ -64,7 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var fname = d.getMonth() + d.getDate() + 'Output.pdf';
+	var fname = JSON.stringify(d.getMonth() + 1)+ JSON.stringify(d.getDate()) + 'Output.pdf';
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
@@ -86,6 +86,7 @@ app.post('/genPDF', function(request, response) {
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
+			   .fontColor('blue');
 
 		   if (!isNaN(questions[qad]['answer'])){
 		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');

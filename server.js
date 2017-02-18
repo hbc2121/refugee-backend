@@ -81,7 +81,7 @@ app.post('/genPDF', function(request, response) {
 
 		   if (!isNaN(questions[qad]['answer'])){
 		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
-		    } else if{
+		    } else{
 		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }
 

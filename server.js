@@ -64,7 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var fname = JSON.stringify(d.getMonth() + 1)+ JSON.stringify(d.getDate()) + 'Output.pdf';
+	var fname = JSON.stringify(d.getMonth() + 1)+ '/' + JSON.stringify(d.getDate()) + 'Output.pdf';
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
@@ -104,7 +104,7 @@ app.post('/genPDF', function(request, response) {
 					answer.fontcolor("red");
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' + answer )
+					   .text(tab + dropdown['question']+ ': ' + answer );
 				}
 			}
 		}

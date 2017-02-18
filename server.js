@@ -64,7 +64,8 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var writeStream = fs.createWriteStream('output.pdf');
+	var fname = d.getMonth() + d.getDate() + 'Output.pdf';
+	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
 		doc.text(date + '\n\n') //adds date to top of page 
@@ -81,17 +82,15 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["NaN","not at all", "a little", "quite a bit", "extremely", "yes", "unanswered", "no"]; //maps numbers to values 
+			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Unanswered", "No"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ')
-			   .font('fonts/LiberationSans-Italic.ttf');
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(tab + words[questions[qad]['answer']] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
 		    } else{
-		   		doc.text(tab + questions[qad]['answer'] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {
@@ -99,9 +98,7 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab.repeat(2) + dropdown['question']+ ': ')
-					   .font('fonts/LiberationSans-Italic.ttf')
-					   .text(tab.repeat(2) + dropdown['answer']);
+					   .text(tab + dropdown['question']+ ': ' +  dropdown['answer'])
 				}
 			}
 		}
@@ -110,7 +107,7 @@ app.post('/genPDF', function(request, response) {
 	
 	doc.end();
 	writeStream.on('finish', function() {
-		var stat = fs.statSync('output.pdf');
+		var stat = fs.statSync(fname);
 		
 		'use strict';
 		const nodemailer = require('nodemailer');
@@ -133,8 +130,8 @@ app.post('/genPDF', function(request, response) {
 		    subject: 'HTQR Results', // Subject line
 		    text: 'Attached is a PDF with the survey results. Thank You \n',
 			 attachments : [{
-				filename: 'output.pdf',
-		    		path: __dirname + '/output.pdf'}]
+				filename: fname,
+		    		path: __dirname + '/' + fname}]
 		    
 		};
 

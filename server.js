@@ -64,7 +64,7 @@ app.post('/genPDF', function(request, response) {
 	var d = new Date();
 	var date = d.toLocaleString();
 	var tab = '        ';
-	var fname = JSON.stringify(d.getMonth() + 1)+ '-' + JSON.stringify(d.getDate()) + 'Output.pdf';
+	var fname = JSON.stringify(d.getMonth() + 1)+ '-' +  JSON.stringify(d.getDate()) + '-' JSON.stringify(d.getFullYear()) + 'Output.pdf';
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
@@ -88,23 +88,17 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12);
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		var answer = words[questions[qad]['answer']];
-		   		answer.fontcolor("red");
-		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']].fontcolor("red"); + '\n');
 		    } else{
-		    	var answer = questions[qad]['answer'];
-		    	answer.fontcolor("red");
-		   		doc.text(questions[qad]['question'] + ': ' + answer + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n').fontcolor("red");
 		    }
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
 					var dropdown = questions[qad]['dropdown'][info];
-					var answer = dropdown['answer'];
-					answer.fontcolor("red");
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' + answer );
+					   .text(tab + dropdown['question']+ ': ' +  dropdown['answer']).fontcolor("red");
 				}
 			}
 		}

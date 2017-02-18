@@ -81,17 +81,15 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["unanswered","not at all", "a little", "quite a bit", "extremely", "yes", "neutral", "no"]; //maps numbers to values 
+			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Neutral", "No"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ')
-			   .font('fonts/LiberationSans-Italic.ttf');
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(tab + words[questions[qad]['answer']] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
 		    } else {
-		   		doc.text(tab + questions[qad]['answer'] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {
@@ -99,9 +97,7 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab.repeat(2) + dropdown['question']+ ': ')
-					   .font('fonts/LiberationSans-Italic.ttf')
-					   .text(tab.repeat(2) + dropdown['answer']);
+					   .text(tab + dropdown['question']+ ': ' + dropdown['answer']);
 				}
 			}
 		}

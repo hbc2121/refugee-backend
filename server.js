@@ -60,7 +60,7 @@ app.post('/genPDF', function(request, response) {
 	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
-		doc.text(date + '\n\n') //adds date to top of page 
+		doc.text(date + 'GMT' + '\n\n') //adds date to top of page 
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
@@ -80,9 +80,9 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']].fontcolor("red") + '\n');
 		    } else {
-		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'].fontcolor("red") + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {
@@ -90,7 +90,7 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' + dropdown['answer']);
+					   .text(tab + dropdown['question']+ ': ' + dropdown['answer'].fontcolor("red"));
 				}
 			}
 		}

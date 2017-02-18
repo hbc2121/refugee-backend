@@ -99,9 +99,9 @@ app.post('/genPDF', function(request, response) {
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
+					var dropdown = questions[qad]['dropdown'][info];
 					var answer = dropdown['answer'];
 					answer.fontcolor("red");
-					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
 					   .text(tab + dropdown['question']+ ': ' + answer )

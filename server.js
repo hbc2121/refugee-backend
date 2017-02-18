@@ -55,8 +55,9 @@ app.post('/genPDF', function(request, response) {
 	var doc = new pdfkit();
 	var d = new Date();
 	var date = d.toLocaleString();
-	var tab = '        ';
-	var writeStream = fs.createWriteStream('output.pdf');
+	var tab = '    ';
+	var fname = JSON.stringify(d.GetMonth() + 1) + '-' + JSON.stringify(d.GetDate()) + '-' + JSON.stringify(d.GetFullYear()) + 'Output.pdf';
+	var writeStream = fs.createWriteStream(fname);
 	doc.pipe(writeStream); 
 
 		doc.text(date + '\n\n') //adds date to top of page 
@@ -98,7 +99,7 @@ app.post('/genPDF', function(request, response) {
 	
 	doc.end();
 	writeStream.on('finish', function() {
-		var stat = fs.statSync('output.pdf');
+		var stat = fs.statSync(fname);
 		
 		'use strict';
 		const nodemailer = require('nodemailer');
@@ -121,8 +122,8 @@ app.post('/genPDF', function(request, response) {
 		    subject: 'HTQR Results', // Subject line
 		    text: 'Attached is a PDF with the survey results. Thank You \n',
 			 attachments : [{
-				filename: 'output.pdf',
-		    		path: __dirname + '/output.pdf'}]
+				filename: fname,
+		    		path: __dirname + '/' + fname}]
 		    
 		};
 

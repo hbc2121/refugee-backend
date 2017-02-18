@@ -30,23 +30,15 @@ app.post('/addPatient', function(request,response) {
 	db.collection('patients').insert(request.body);
 	response.send(":)");
 });
-
-
 app.get('/get', function(request,response){
-
-
 });
-
 app.get('/getall', function(request,response){
 	
 	
 });
-
-
 app.get('/deletePatient', function(request,response) {
 	
 });
-
 app.get('/getQuestions', function(request,response) {
 	
 	var fs = require('fs');
@@ -81,27 +73,23 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Unanswered", "No"]; //maps numbers to values 
+			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Neutral", "No"]; //maps numbers to values 
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
-			   .text(tab + questions[qad]['question'] + ': ')
-			   .font('fonts/LiberationSans-Italic.ttf');
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   doc.text(tab + words[questions[qad]['answer']] + '\n');
-		    } else{
-		   doc.text(tab + questions[qad]['answer'] + '\n');
-		   }
+		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
+		    } else {
+		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
+		    }
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab.repeat(2) + dropdown['question']+ ': ')
-					   .font('fonts/LiberationSans-Italic.ttf')
-					   .text(tab.repeat(2) + dropdown['answer']);
+					   .text(tab + dropdown['question']+ ': ' + dropdown['answer']);
 				}
 			}
 		}
@@ -161,4 +149,3 @@ app.get('/getQuestions', function(request,response) {
 });
 
 app.listen(process.env.PORT || 3000);
-

@@ -74,16 +74,14 @@ app.post('/genPDF', function(request, response) {
 			.text(request.body[key]['category']); //prints categories 
 
 		for (qad in questions) {
-			var words = ["N/A","Not at all", "A little", "Quite a bit", "Extremely", "Yes", "Neutral", "No"]; //maps numbers to values 
+			
 			
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 
-		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['value'] + '\n');
-		    } else{
-		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['value'] + '\n');
-		    }
+		   
+		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['question']['value'] + '\n');
+		   
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {

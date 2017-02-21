@@ -88,7 +88,7 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['question']+ ': ' + dropdown['answer']);
+					   .text(tab + dropdown['body']+ ': ' + dropdown['value']);
 				}
 			}
 		}

@@ -88,11 +88,12 @@ app.post('/genPDF', function(request, response) {
 					var dropdown = questions[qad]['dropdown'][info];
 					doc.font('fonts/LiberationSans-Regular.ttf')
 					   .fontSize(12)
-					   .text(tab + dropdown['body']+ ': ' + dropdown['value']);
+					   .text(tab + dropdown['body']+ ': ' + dropdown['value'] + '\n');
 				}
 			}
 		}
-		doc.text('\n');
+		doc.text(request.body[key]['additional_comments']);
+		doc.text('\n');		
 	}
 	
 	doc.end();

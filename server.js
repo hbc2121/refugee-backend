@@ -80,9 +80,9 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 
 		   if (!isNaN(questions[qad]['answer'])){
-		   		doc.text(questions[qad]['question'] + ': ' + words[questions[qad]['answer']] + '\n');
+		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['value'] + '\n');
 		    } else{
-		   		doc.text(questions[qad]['question'] + ': ' + questions[qad]['answer'] + '\n');
+		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['value'] + '\n');
 		    }
 
 			if (questions[qad]['dropdown']) {

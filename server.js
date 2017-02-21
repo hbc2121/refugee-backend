@@ -80,7 +80,7 @@ app.post('/genPDF', function(request, response) {
 			   .fontSize(12)
 
 		   
-		   		doc.text(questions[qad]['question']['body'] + ': ' + questions[qad]['question']['value'] + '\n');
+		   		doc.text(questions[qad]['body'] + ': ' + questions[qad]['value'] + '\n');
 		   
 
 			if (questions[qad]['dropdown']) {

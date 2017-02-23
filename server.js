@@ -94,8 +94,8 @@ app.post('/genPDF', function(request, response) {
 		}
 		if (request.body[key]['additional_comments'] != '') {
 			doc.text('Additional Comments: ' + request.body[key]['additional_comments']);
-			doc.text('\n');		
 		}
+		doc.text('\n');		
 	}
 	
 	doc.end();

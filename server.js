@@ -92,8 +92,10 @@ app.post('/genPDF', function(request, response) {
 				}
 			}
 		}
-		doc.text(request.body[key]['additional_comments']);
-		doc.text('\n');		
+		if (request.body[key]['additional_comments'] != '') {
+			doc.text('Additional Comments: ' + request.body[key]['additional_comments']);
+			doc.text('\n');		
+		}
 	}
 	
 	doc.end();

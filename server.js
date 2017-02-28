@@ -7,11 +7,11 @@ var path = require('path');
 
 // Mongo initialization and connect to database
 //var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
-var mongoUri = "mongodb://main:password1@ds127389.mlab.com:27389/heroku_5qlth62f";
-var MongoClient = require('mongodb').MongoClient, format = require('util').format;
-var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
-	db = databaseConnection;
-});
+//var mongoUri = "mongodb://main:password1@ds127389.mlab.com:27389/heroku_5qlth62f";
+//var MongoClient = require('mongodb').MongoClient, format = require('util').format;
+//var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
+//	db = databaseConnection;
+//});
 
 //TODO: why do we need this
 app.use(function(req, res, next) {
@@ -109,8 +109,8 @@ app.post('/genPDF', function(request, response) {
 		let transporter = nodemailer.createTransport({
 		    service: 'gmail',
 		    auth: {
-			user: 'htqr2017@gmail.com',
-			pass: 'tuftscapstone'
+			user: process.env.EMAIL_ADDRESS,
+			pass: process.env.EMAIL_PASSWORD
 		    }
 		});
 
@@ -118,7 +118,7 @@ app.post('/genPDF', function(request, response) {
 
 		// setup email data with unicode symbols
 		let mailOptions = { 
-		    from: '"HTQR" <htqr2017@gmail.com>', // sender address
+		    from: '"HTQR" <' + process.env.EMAIL_ADDRESS + '>', // sender address
 		    to: request.query.email, // list of receivers
 		    subject: 'HTQR Results', // Subject line
 		    text: 'Attached is a PDF with the survey results. Thank You \n',

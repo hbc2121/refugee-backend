@@ -136,7 +136,7 @@ app.get('/getQuestions', function(request,response) {
 /****************************************************************
 *					PATIENT FUNCTIONS							*
 ****************************************************************/
-app.get('/setDoctor', function(request,response) {
+app.post('/setDoctor', function(request,response) {
 
 	doctor_name = request.body[user_name];
 
@@ -145,16 +145,13 @@ app.get('/setDoctor', function(request,response) {
 app.post('/addNewPatient', function(request,response) {
 
 
-	var d = new Date();
-	var date_string = JSON.stringify(d.getMonth() + 1) + '-' + JSON.stringify(d.getDate()) + '-' + JSON.stringify(d.getFullYear());
-	var patient_info = request.body;
-
 	//created a new document to store patients data
 	db.patients.insert(
 
 		{	
 			//add their name
 			name: request.body[name],
+			dateOfBirth: request.body[dateOfBirth]
 			//initializes a list of their visits
 			visits: { 
 
@@ -221,12 +218,12 @@ app.get('/getAllPatients', function(request,response){
 });
 
 
-app.get('/deletePatient', function(request,response) {	
+app.post('/deletePatient', function(request,response) {	
 
 	db.patient.remove({name : request.body[name]});
 });
 
-app.get('/deleteAllPatients', function(request,response) {	
+app.post('/deleteAllPatients', function(request,response) {	
 
 	db.patient.remove();
 });
@@ -235,7 +232,7 @@ app.get('/deleteAllPatients', function(request,response) {
 *					DOCTOR FUNCTIONS							*
 ****************************************************************/
 
-app.get('/addDoctor', function(request,response){
+app.post('/addDoctor', function(request,response){
 
 		db.doctors.insert(
 
@@ -248,7 +245,7 @@ app.get('/addDoctor', function(request,response){
 		);
 });
 
-app.get('/removeDoctor', function(request,response){
+app.post('/removeDoctor', function(request,response){
 
 		db.doctors.remove({name : request.body[name]});	
 

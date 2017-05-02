@@ -138,7 +138,7 @@ app.get('/getQuestions', function(request,response) {
 ****************************************************************/
 app.post('/setDoctor', function(request,response) {
 
-	doctor_name = request.username;
+	doctor_name = request.query.username;
 	console.log(doctor_name);
 
 });

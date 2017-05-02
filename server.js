@@ -138,7 +138,8 @@ app.get('/getQuestions', function(request,response) {
 ****************************************************************/
 app.post('/setDoctor', function(request,response) {
 
-	doctor_name = request.body[user_name];
+	doctor_name = request.body;
+	console.log(doctor_name);
 
 });
 
@@ -151,7 +152,7 @@ app.post('/addNewPatient', function(request,response) {
 		{	
 			//add their name
 			name: request.body[name],
-			dateOfBirth: request.body[dateOfBirth]
+			dateOfBirth: request.body[dateOfBirth],
 			//initializes a list of their visits
 			visits: { 
 
@@ -197,12 +198,10 @@ app.post('/updatePatient', function(request,response) {
 
 app.get('/getPatient', function(request,response){
 
-	//puts cursor at document of patients
-	var cursor = db.patients.find({name : request.body[name]});
+	var patient = db.doctors.find({name:request.body[name]});
+	var visits = patient.visits;
 
-	var patient_doc = cursor.toArray();
-
-	response.send(patient_doc);
+	response.send(visits);
 
 });
 

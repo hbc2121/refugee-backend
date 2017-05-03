@@ -209,10 +209,10 @@ app.post('/updatePatient', function(request,response) {
 
 app.get('/getPatient', function(request, response){
 	response.send(request);
-	
+
     var patientQuery = {
-        firstName: request.body['firstName'],
-        lastName: request.body['lastName'],
+        firstName: request.firstName,
+        lastName: request.lastName,
     };
 
 

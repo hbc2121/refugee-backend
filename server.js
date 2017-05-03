@@ -221,9 +221,22 @@ app.get('/getPatient', function(request, response){
     });
 });
 
-// TODO
 app.post('/deletePatient', function(request,response) {
-	db.patient.remove({name : request.body[name]});
+    var patientFirstName = request.body['firstName'];
+    var patientLastName = request.body['lastName'];
+    var dob = request.body['dateOfBirth'];
+    var query = {
+        firstName: patientFirstName,
+        lastName: patientLastName,
+        dateOfBirth: dob
+    };
+	db.patient.remove(query, { justOne:true }, function(err, idk) {
+        if (err) {
+            response.send("error: failed to remove patient");
+        } else {
+            response.send(200);
+        }
+    });
 });
 
 app.post('/login', function(request, reponse) {

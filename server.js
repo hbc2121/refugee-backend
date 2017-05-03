@@ -213,12 +213,13 @@ app.get('/getPatient', function(request, response){
         lastName: request.body['lastName'],
     };
 
+
     var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-    		response.send("patient");
+    		response.send(patientQuery);
     	} else {
         	response.send("error: no patient found");
     	}

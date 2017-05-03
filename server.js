@@ -226,6 +226,13 @@ app.post('/deletePatient', function(request,response) {
 	db.patient.remove({name : request.body[name]});
 });
 
+app.post('/login', function(request, reponse) {
+    var username = request.body['username'];
+    var password = request.body['password'];
+
+    response.send(username);
+});
+
 /****************************************************************
 *					DOCTOR FUNCTIONS							*
 ****************************************************************/

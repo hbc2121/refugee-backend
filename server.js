@@ -150,6 +150,7 @@ app.post('/addNewPatient', function(request, response) {
     var patientFirstName = request.body['firstName'];
     var patientLastName = request.body['lastName'];
     var dob = request.body['dateOfBirth'];
+    console.log(request.body);
 
     db.collection('patients', function (err, coll) {
         if (err) {
@@ -196,7 +197,7 @@ app.post('/updatePatient', function(request,response) {
         dateOfBirth: request.body['dateOfBirth']
     };
 
-    db.patients.updateOne(query, {$push {visits: request.body['visit']}}, function(err, idk) {
+    db.patients.updateOne(query, {$push: {visits: request.body['visit']}}, function(err, idk) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
         } else {
@@ -213,7 +214,7 @@ app.get('/getPatient', function(request, response){
         lastName: request.query.lastName,
         dateOfBirth: request.query.dateOfBirth
     };
-    var pat = db.patients.findOne(patientQuery, function(err, patient) {
+    var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
         response.send(patient);
     });
 });
@@ -261,7 +262,7 @@ app.post('/addDoctor', function(request,response){
         patients: []
     }
 
-	db.doctors.insert(newDoctor, function(err, idk) {
+	db.collection('doctors').insert(newDoctor, function(err, idk) {
         if (err) {
             response.send({ "message": "failed to add doctor" });
         } else {

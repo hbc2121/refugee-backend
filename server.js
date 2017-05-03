@@ -218,9 +218,9 @@ app.get('/getPatient', function(request, response){
     if(!pat){
     		response.send("error: failed to retrieve patient");	
     	} else {
-        response.send(patient);
+        response.send(pat);
     	}
-    
+
     // , function(err, patient) {
     // 	if(err || !patient){
     // 		response.send("error: failed to retrieve patient");	

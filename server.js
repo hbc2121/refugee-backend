@@ -4,7 +4,6 @@ var pdfkit = require('pdfkit');
 var fs = require('fs');
 var app = express();
 var path = require('path');
-var doctor_name = "";
 
 //Mongo initialization and connect to database
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
@@ -34,9 +33,9 @@ app.post('/genPDF', function(request, response) {
 	var tab = '    ';
 	var fname = JSON.stringify(d.getMonth() + 1) + '-' + JSON.stringify(d.getDate()) + '-' + JSON.stringify(d.getFullYear()) + 'Output.pdf';
 	var writeStream = fs.createWriteStream(fname);
-	doc.pipe(writeStream); 
+	doc.pipe(writeStream);
 
-		doc.text(date + ' GMT' + '\n\n') //adds date to top of page 
+		doc.text(date + ' GMT' + '\n\n') //adds date to top of page
 			.fontSize(12);
 
 		doc.font('fonts/LiberationSans-BoldItalic.ttf')
@@ -47,17 +46,17 @@ app.post('/genPDF', function(request, response) {
 		var questions = request.body[key]['questions'];
 		doc.font('fonts/LiberationSans-Bold.ttf')
 			.fontSize(12)
-			.text(request.body[key]['category']); //prints categories 
+			.text(request.body[key]['category']); //prints categories
 
 		for (qad in questions) {
-			
-			
+
+
 			doc.font('fonts/LiberationSans-Regular.ttf')
 			   .fontSize(12)
 
-		   
+
 		   		doc.text(questions[qad]['body'] + ': ' + questions[qad]['value'] + '\n');
-		   
+
 
 			if (questions[qad]['dropdown']) {
 				for (info in questions[qad]['dropdown']) {
@@ -71,18 +70,18 @@ app.post('/genPDF', function(request, response) {
 		if (request.body[key]['additional_comments'] != '') {
 			doc.text('Additional Comments: ' + request.body[key]['additional_comments']);
 		}
-		doc.text('\n');		
+		doc.text('\n');
 	}
-	
+
 	doc.end();
 	writeStream.on('finish', function() {
 		var stat = fs.statSync(fname);
-		
+
 		'use strict';
 		const nodemailer = require('nodemailer');
 
 		// create reusable transporter object using the default SMTP transport
-		let transporter = nodemailer.createTransport({
+		var transporter = nodemailer.createTransport({
 		    service: 'gmail',
 		    auth: {
 			user: process.env.EMAIL_ADDRESS,
@@ -90,10 +89,10 @@ app.post('/genPDF', function(request, response) {
 		    }
 		});
 
-		console.log(request.query.email);		
+		console.log(request.query.email);
 
 		// setup email data with unicode symbols
-		let mailOptions = { 
+		var mailOptions = {
 		    from: '"HTQR" <' + process.env.EMAIL_ADDRESS + '>', // sender address
 		    to: request.query.email, // list of receivers
 		    subject: 'HTQR Results', // Subject line
@@ -101,7 +100,7 @@ app.post('/genPDF', function(request, response) {
 			 attachments : [{
 				filename: fname,
 		    		path: __dirname + '/' + fname}]
-		    
+
 		};
 
 		// send mail with defined transport object
@@ -117,13 +116,13 @@ app.post('/genPDF', function(request, response) {
 });
 
 app.get('/getQuestions', function(request,response) {
-	
+
 	var fs = require('fs');
 	var content = fs.readFileSync('question_list.json', 'utf8');
-	 
+
 	response.setHeader('Content-Type', 'application/json');
 	response.send((content));
-	
+
 });
 
 /****************************************************************
@@ -132,48 +131,63 @@ app.get('/getQuestions', function(request,response) {
 *				IF IT DOESN'T WORK....I'M SORRY :(	  			*
 ****************************************************************/
 
+// TODO: remove this; just here for debugging
+function assert(condition, message) {
+    if (!condition) {
+        message = message || "Assertion failed";
+        if (typeof Error !== "undefined") {
+            throw new Error(message);
+        }
+        throw message; // Fallback
+    }
+}
 
 /****************************************************************
 *					PATIENT FUNCTIONS							*
 ****************************************************************/
-app.post('/setDoctor', function(request,response) {
+app.post('/addNewPatient', function(request, response) {
+    var patientFirstName = request.body['firstName'];
+    var patientLastName = request.body['lastName'];
+    var dob = request.body['dateOfBirth'];
 
-	doctor_name = request.query.username;
-	console.log(doctor_name);
+    db.collection('patients', function (err, coll) {
+        if (err) {
+            response.send({ "message": "error accessing \'patient\' collection"});
+            return;
+        } else {
+            coll.insert({
+                firstName: patientFirstName,
+                lastName: patientLastName,
+                dateOfBirth: dob,
+                visits: []
+            });
+        }
+    });
 
+    var patientQuery = {
+        firstName: patientFirstName,
+        lastName: patientLastName,
+        dateOfBirth: dob
+    };
+
+    var doctorQuery = { userName: request.body['username'] };
+    db.collection('patients').findOne(patientQuery, function(err, pat) {
+        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: pat._id }}, function(err, result) {
+            if (err) {
+                response.send({ "message": "error updating patient list" });
+            } else {
+                response.send(200);
+            }
+        });
+    });
 });
 
-app.post('/addNewPatient', function(request,response) {
-
-
-	//created a new document to store patients data
-	db.patients.insert(
-
-		{	
-			//add their name
-			name: request.body[name],
-			dateOfBirth: request.body[dateOfBirth],
-			//initializes a list of their visits
-			visits: { 
-
-			}}
-		);
-
-	//adds patients ID to list of patients for doctor currently signed in
-	var user = db.patients.find({name:request.body[name]});
-	var id = user._id;
-	addPatientToDoctor(id,doctor_name);
-
-});
-
+// TODO
 app.post('/updatePatient', function(request,response) {
-
 	//first confirm doctor is allowed to view this patient
 	if(!validPatient(request.body[name])) {
 		response.send(false)
-	}
-
-	else {
+	} else {
 	var d = new Date();
 	var date_string = JSON.stringify(d.getMonth() + 1) + '-' + JSON.stringify(d.getDate()) + '-' + JSON.stringify(d.getFullYear());
 	var patient_info = request.body;
@@ -185,7 +199,7 @@ app.post('/updatePatient', function(request,response) {
 
 		//update visits array by adding new field
 		{'$set' : {"visits" : { d : {date: date_string,
-									data: patient_info}} 
+									data: patient_info}}
 							}
 		},
 
@@ -196,78 +210,53 @@ app.post('/updatePatient', function(request,response) {
 	}
 });
 
-app.get('/getPatient', function(request,response){
-
-	var patient = db.doctors.find({name:request.body[name]});
-	var visits = patient.visits;
-
-	response.send(visits);
-
+app.get('/getPatient', function(request, response){
+    var patientQuery = {
+        firstName: request.query.firstName,
+        lastName: request.query.lastName,
+        dateOfBirth: request.query.dateOfBirth
+    };
+    var pat = db.patients.findOne(patientQuery, function(err, patient) {
+        response.send(patient);
+    });
 });
 
-app.get('/getAllPatients', function(request,response){
-
-	//no parameter returns all documents
-	var cursor = db.patients.find();
-
-	var patient_doc = cursor.toArray();
-
-	response.send(patient_doc);
-
-});
-
-
-app.post('/deletePatient', function(request,response) {	
-
+// TODO
+app.post('/deletePatient', function(request,response) {
 	db.patient.remove({name : request.body[name]});
-});
-
-app.post('/deleteAllPatients', function(request,response) {	
-
-	db.patient.remove();
 });
 
 /****************************************************************
 *					DOCTOR FUNCTIONS							*
 ****************************************************************/
+// TODO
+app.get('/getPatientsOfDoctor', function(request, response) {
 
+});
+
+// TODO
 app.post('/addDoctor', function(request,response){
 
 		db.doctors.insert(
 
-		{	
+		{
 			//add their name
 			name: request.body[name],
 			//initializes a list of their visits
-			patients: [] 
-		}	
+			patients: []
+		}
 		);
 });
 
+// TODO
 app.post('/removeDoctor', function(request,response){
 
-		db.doctors.remove({name : request.body[name]});	
+		db.doctors.remove({name : request.body[name]});
 
 });
 
-function addPatientToDoctor(id,doctor){
-
-	var user = db.doctors.find({name:doctors_name});
-	var new_patients = user.patients;
-	new_patients.push(id);
-
-	db.doctors.update(
-
-		{name:doctor_name},
-
-		{patients:new_patients}
-
-	);
-
-}
-
 function removePatientFromDoctor(id){
-	
+
 	var user = db.doctors.find({name:doctors_name});
 	var new_patients = user.patients;
 

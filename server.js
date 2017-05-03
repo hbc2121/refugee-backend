@@ -214,20 +214,16 @@ app.get('/getPatient', function(request, response){
         dateOfBirth: request.body['dateOfBirth']
     };
 
-    var pat = db.collection('patients').findOne(patientQuery)
-    if(!pat){
+    var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
+    	if(err){
     		response.send("error: failed to retrieve patient");	
+    	} 
+    	if(patient){
+    		response.send(patient);
     	} else {
-        response.send(pat);
+        	response.send("error: no patient found");
     	}
-
-    // , function(err, patient) {
-    // 	if(err || !patient){
-    // 		response.send("error: failed to retrieve patient");	
-    // 	} else {
-    //     response.send(patient);
-    // 	}
-    // });
+    });
 });
 
 app.post('/deletePatient', function(request,response) {

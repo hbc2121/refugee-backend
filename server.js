@@ -214,7 +214,11 @@ app.get('/getPatient', function(request, response){
         dateOfBirth: request.query.dateOfBirth
     };
     var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
+    	if(err || !patient){
+    		response.send("error: failed to retrieve patient");	
+    	} else {
         response.send(patient);
+    	}
     });
 });
 

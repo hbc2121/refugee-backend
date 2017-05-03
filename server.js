@@ -209,9 +209,9 @@ app.post('/updatePatient', function(request,response) {
 
 app.get('/getPatient', function(request, response){
     var patientQuery = {
-        firstName: request.query.firstName,
-        lastName: request.query.lastName,
-        dateOfBirth: request.query.dateOfBirth
+        firstName: request.body['firstName'],
+        lastName: request.body['lastName'],
+        dateOfBirth: request.body['dateOfBirth']
     };
     var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err || !patient){

@@ -213,13 +213,21 @@ app.get('/getPatient', function(request, response){
         lastName: request.body['lastName'],
         dateOfBirth: request.body['dateOfBirth']
     };
-    var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
-    	if(err || !patient){
+
+    var pat = db.collection('patients').findOne(patientQuery)
+    if(!pat){
     		response.send("error: failed to retrieve patient");	
     	} else {
         response.send(patient);
     	}
-    });
+    
+    // , function(err, patient) {
+    // 	if(err || !patient){
+    // 		response.send("error: failed to retrieve patient");	
+    // 	} else {
+    //     response.send(patient);
+    // 	}
+    // });
 });
 
 app.post('/deletePatient', function(request,response) {

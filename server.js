@@ -208,24 +208,24 @@ app.post('/updatePatient', function(request,response) {
 });
 
 app.get('/getPatient', function(request, response){
-	response.send(request);
 
     var patientQuery = {
-        firstName: request.firstName,
-        lastName: request.lastName,
+        firstName: request.body['firstName'],
+        lastName: request.body['lastName'],
     };
 
+    response.send(patientQuery.firstName);
 
-    var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
-    	if(err){
-    		response.send("error: failed to retrieve patient");	
-    	} 
-    	if(patient){
-    		response.send(patientQuery);
-    	} else {
-        	response.send("error: no patient found");
-    	}
-    });
+    // var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
+    // 	if(err){
+    // 		response.send("error: failed to retrieve patient");	
+    // 	} 
+    // 	if(patient){
+    // 		response.send(patientQuery);
+    // 	} else {
+    //     	response.send("error: no patient found");
+    // 	}
+    // });
 });
 
 app.post('/deletePatient', function(request,response) {

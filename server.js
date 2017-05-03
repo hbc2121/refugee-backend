@@ -247,7 +247,7 @@ app.post('/login', function(request, reponse) {
     };
 
     var doc = db.collection('doctors').findOne(query, function(err, doc) {
-        if (err) {
+        if (err || !doc) {
             response.send(false);
         } else {
             response.send(true);

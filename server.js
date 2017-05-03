@@ -239,10 +239,19 @@ app.post('/deletePatient', function(request,response) {
 });
 
 app.post('/login', function(request, reponse) {
-    var username = request.body['username'];
+    var user = request.body['username'];
     var password = request.body['password'];
+    var query = {
+        username: user
+    };
 
-    response.send(username);
+    var doc = db.collection('doctors').findOne(query, function(err, doc) {
+        if (err) {
+            response.send("no");
+        } else {
+            response.send("yes");
+        }
+    });
 });
 
 /****************************************************************

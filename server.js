@@ -238,7 +238,7 @@ app.post('/deletePatient', function(request,response) {
     // TODO: remove from all doctors' lists
 });
 
-app.post('/login', function(request, reponse) {
+app.post('/login', function(request, response) {
     var user = request.body['username'];
     var password = request.body['password'];
     var query = {

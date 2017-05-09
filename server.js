@@ -258,6 +258,7 @@ app.post('/login', function(request, response) {
 // TODO
 app.get('/getPatientsOfDoctor', function(request, response) {
 
+
 });
 
 //THIS WORKS
@@ -302,7 +303,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
  function validPatient(id,doctor_name){
  
-    var user = db.collection('doctors').findOne({username:doctors_name});
+    var user = db.collection('doctors').findOne({username:doctor_name});
     var patients = user.patients;
  
     return patients.indexOf(id) > -1;

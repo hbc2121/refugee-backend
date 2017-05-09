@@ -200,8 +200,11 @@ app.post('/updatePatient', function(request,response) {
     db.collection('patients').updateOne(query, {$push: {visits: request.body['visit']}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
-        } else {
+        } 
+        if(patient)
             response.send(200);
+        else {
+            response.send("error: no patient found");
         }
     });
 

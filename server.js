@@ -174,7 +174,7 @@ app.post('/addNewPatient', function(request, response) {
 
     var doctorQuery = { userName: request.body['username'] };
     db.collection('patients').findOne(patientQuery, function(err, pat) {
-        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: pat._id }}, function(err, result) {
+        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: pat._id.$oid }}, function(err, result) {
             if (err) {
                 response.send({ "message": "error updating patient list" });
             } else {
@@ -220,7 +220,7 @@ app.get('/getPatient', function(request, response){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-            if(validPatient(patient._id,request.query.username)){
+            if(validPatient(patient._id.$oid,request.query.username)){
                 response.send(patient);
             }else{
                 response.send("error: patient not in doctor list")
@@ -290,7 +290,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
     var pat = db.collection('patients').findOne(patientQuery);
 
-     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: pat._id}}, function(err, doctor) {
+     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: pat._id.$oid}}, function(err, doctor) {
         if (err) {
             reponse.send({ "message": "error: unable to add patient"});
         } else {

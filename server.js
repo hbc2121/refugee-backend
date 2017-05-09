@@ -218,20 +218,40 @@ app.get('/getPatient', function(request, response){
     };
 
 
+
     db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-            console.log("WORK!! " + validPatient(JSON.stringify(patient.valueOf()._id),request.query.username));
-            if(validPatient(JSON.stringify(patient.valueOf()._id),request.query.username)){
-                response.send(patient);
-            }else{
-                response.send("error: patient not in doctor list")
-            }
-    	} else {
-        	response.send("error: no patient found");
-    	}
+            
+
+            var id = JSON.stringify(patient.valueOf()._id);
+            db.collection('doctors').findOne({username:request.query.username}, function(err,user){
+
+                if(err){
+                    response.send("error");
+                }
+
+                if(user){
+                    var pats = user.patients;
+                    var valid = (pats.includes(id));
+                    console.log("VALID" + valid);
+                        if(valid){
+                            response.send(patient);
+                        } else {
+                            response.send("error: patient not in doctor list");
+                        }
+
+                 } else {
+                        response.send("error");
+                }
+            });
+
+        }else{
+                response.send("error: no patient found")
+        }
+
     });
 
 });
@@ -305,31 +325,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
 });
 
-//TODO
- function validPatient(id,doctor_name){
- 
 
-    db.collection('doctors').findOne({username:doctor_name}, function(err,user){
-
-        if(err){
-            return false;
-        }
-
-        if(user){
-            var pats = user.patients;
-            console.log("ID: " + id + "PATS: " + pats);
-            console.log("TYPES " + typeof(id) + " " + typeof(pats[0]));
-            console.log("HERE" +pats.includes(id));
-            var valid = (pats.includes(id));
-            console.log("VALID" + valid);
-            return valid;
-        } else {
-            return false;
-        }
-    });
-
-
-}
 
 
 app.listen(process.env.PORT || 3000);

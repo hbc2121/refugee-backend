@@ -307,10 +307,13 @@ app.post('/addPatientToDoctor', function(request,response){
 //TODO
  function validPatient(id,doctor_name){
  
+    console.log(id,doctor_name);
+
     var user = db.collection('doctors').findOne({username:doctor_name});
+    console.log(user);
+
     var pats = user.valueOf().patients;
     
-    console.log(pats);
     return true;
  }
 

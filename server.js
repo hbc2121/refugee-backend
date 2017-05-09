@@ -218,16 +218,19 @@ app.get('/getPatient', function(request, response){
         lastName: request.query.lastName,
     };
 
+
     db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-            if(validPatient(patient._id.valueOf(),request.query.username)){
-                response.send(patient);
-            }else{
-                response.send("error: patient not in doctor list")
-            }
+            console.log(patient.valueOf());
+            response.send(patient);
+            // if(validPatient(patient._id.valueOf(),request.query.username)){
+            //     response.send(patient);
+            // }else{
+            //     response.send("error: patient not in doctor list")
+            // }
     	} else {
         	response.send("error: no patient found");
     	}
@@ -307,9 +310,9 @@ app.post('/addPatientToDoctor', function(request,response){
  function validPatient(id,doctor_name){
  
     var user = db.collection('doctors').findOne({username:doctor_name});
-    var patients = user.patients;
+    var pats = user.patients;
     
-    console.log(patients);
+    console.log(pats);
     return true;
  }
 

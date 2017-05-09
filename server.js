@@ -319,7 +319,7 @@ app.post('/addPatientToDoctor', function(request,response){
         if(user){
             var pats = user.patients;
             console.log(pats);
-            console.log(pats.indexOf(id));
+            console.log(pats.indexOf('59121344ec509d00049498c4'));
             return (pats.indexOf(id) > -1);
         } else {
             console.log("s2");

@@ -308,11 +308,11 @@ app.post('/addPatientToDoctor', function(request,response){
 //TODO
  function validPatient(id,doctor_name){
  
-
+    var valid = false;
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
-            return false;
+            valid = false;
         }
 
         if(user){
@@ -320,14 +320,16 @@ app.post('/addPatientToDoctor', function(request,response){
             console.log("ID: " + id + "PATS: " + pats);
             console.log("TYPES " + typeof(id) + " " + typeof(pats[0]));
             console.log("HERE" +pats.includes(id));
-            return (pats.includes(id));
+            valid = (pats.includes(id));
+
         } else {
-            return false;
+            valid = false;
         }
     });
-  
-    return false;
- }
+    
+    return valid;
+
+}
 
 
 app.listen(process.env.PORT || 3000);

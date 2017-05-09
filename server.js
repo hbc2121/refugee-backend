@@ -131,7 +131,7 @@ app.get('/getQuestions', function(request,response) {
 *				IF IT DOESN'T WORK....I'M SORRY :(	  			*
 ****************************************************************/
 
-// TODO: remove this; just here for debugging
+//just here for debugging
 function assert(condition, message) {
     if (!condition) {
         message = message || "Assertion failed";
@@ -186,6 +186,7 @@ app.post('/addNewPatient', function(request, response) {
 // TODO
 app.post('/updatePatient', function(request,response) {
 	//first confirm doctor is allowed to view this patient
+
 	var d = new Date();
 	var date_string = JSON.stringify(d.getMonth() + 1) + '-'
                       + JSON.stringify(d.getDate()) + '-'
@@ -196,7 +197,7 @@ app.post('/updatePatient', function(request,response) {
         dateOfBirth: request.body['dateOfBirth']
     };
 
-    db.patients.updateOne(query, {$push: {visits: request.body['visit']}}, function(err, idk) {
+    db.collection('patients').updateOne(query, {$push: {visits: request.body['visit']}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
         } else {
@@ -247,6 +248,10 @@ app.post('/deletePatient', function(request,response) {
     // TODO: remove from all doctors' lists
 });
 
+/****************************************************************
+*					DOCTOR FUNCTIONS							*
+****************************************************************/
+
 app.post('/login', function(request, response) {
     var user = request.body['username'];
     var password = request.body['password'];
@@ -263,9 +268,6 @@ app.post('/login', function(request, response) {
     });
 });
 
-/****************************************************************
-*					DOCTOR FUNCTIONS							*
-****************************************************************/
 // TODO
 app.get('/getPatientsOfDoctor', function(request, response) {
 

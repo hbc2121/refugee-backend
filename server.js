@@ -321,12 +321,13 @@ app.post('/addPatientToDoctor', function(request,response){
             console.log("TYPES " + typeof(id) + " " + typeof(pats[0]));
             console.log("HERE" +pats.includes(id));
             valid = (pats.includes(id));
-
+            console.log("VALID" + valid);
         } else {
             valid = false;
         }
     });
-    
+
+ console.log("VALID2" + valid);
     return valid;
 
 }

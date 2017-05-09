@@ -223,7 +223,7 @@ app.get('/getPatient', function(request, response){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-
+            console.log("WORK!! " + validPatient(JSON.stringify(patient.valueOf()._id),request.query.username));
             if(validPatient(JSON.stringify(patient.valueOf()._id),request.query.username)){
                 response.send(patient);
             }else{

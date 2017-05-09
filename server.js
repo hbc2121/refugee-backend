@@ -173,7 +173,7 @@ app.post('/addNewPatient', function(request, response) {
 
     var doctorQuery = { userName: request.body['username'] };
     db.collection('patients').findOne(patientQuery, function(err, pat) {
-        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: pat.valueOf()._id}}, function(err, result) {
+        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, function(err, result) {
             if (err) {
                 response.send({ "message": "error updating patient list" });
             } else {
@@ -224,7 +224,7 @@ app.get('/getPatient', function(request, response){
     	} 
     	if(patient){
 
-            if(validPatient(patient.valueOf()._id,request.query.username)){
+            if(validPatient(JSON.stringify(patient.valueOf()._id),request.query.username)){
                 response.send(patient);
             }else{
                 response.send("error: patient not in doctor list")
@@ -312,23 +312,19 @@ app.post('/addPatientToDoctor', function(request,response){
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
-            console.log("s1");
             return false;
         }
 
         if(user){
             var pats = user.patients;
             console.log(pats);
-            console.log("TYPES " + typeof(id) + " " + typeof(pats[2]));
             console.log(pats.includes(id));
-            return (pats.indexOf(id) > -1);
+            //return (pats.indexOf(id) > -1);
         } else {
-            console.log("s2");
             return false;
         }
     });
   
-  console.log("s3");
   return false;
  }
 

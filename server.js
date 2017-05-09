@@ -326,10 +326,7 @@ app.post('/addPatientToDoctor', function(request,response){
                 } 
                 if(doctor) {
                     response.send(200);
-                }
-                else {
-                    response.send("error:unable to add patient to doctor");
-                }                
+                }          
             });
 
         } else {

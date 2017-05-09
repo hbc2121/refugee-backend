@@ -295,7 +295,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
     var pat = db.collection('patients').findOne(patientQuery);
 
-     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: pat.valueOf()._id}}, function(err, doctor) {
+     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
         if (err) {
             reponse.send({ "message": "error: unable to add patient"});
         } else {
@@ -308,7 +308,7 @@ app.post('/addPatientToDoctor', function(request,response){
 //TODO
  function validPatient(id,doctor_name){
  
-    console.log(id);
+
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
@@ -317,15 +317,15 @@ app.post('/addPatientToDoctor', function(request,response){
 
         if(user){
             var pats = user.patients;
-            console.log(pats);
-            console.log(pats.includes(id));
-            //return (pats.indexOf(id) > -1);
+            console.log("ID: " + id + "PATS: " + pats);
+            console.log("HERE" +pats.includes(id));
+           // return (pats.indexOf(id) > -1);
         } else {
             return false;
         }
     });
   
-  return false;
+    return false;
  }
 
 

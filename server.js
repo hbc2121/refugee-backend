@@ -183,7 +183,7 @@ app.post('/addNewPatient', function(request, response) {
     });
 });
 
-// NEED TO TEST
+//THIS WORKS
 app.post('/updatePatient', function(request,response) {
 
 	var d = new Date();
@@ -289,6 +289,7 @@ app.post('/addPatientToDoctor', function(request,response){
     var patientQuery = {
         firstName: request.body['firstName'],
         lastName: request.body['lastName'],
+        dateOfBirth: request.body['dob']
     };
 
 
@@ -316,13 +317,14 @@ app.post('/addPatientToDoctor', function(request,response){
 
         if(user){
             var pats = user.patients;
-            console.log(pats);
+            console.log(pats.indexOf(id));
+            return (pats.indexOf(id) > -1);
         } else {
             response.send("error: cannot validate patient")
         }
     });
   
-    return true;
+  response.send("error:unable to validate patient");
  }
 
 

@@ -318,6 +318,7 @@ app.post('/addPatientToDoctor', function(request,response){
         if(user){
             var pats = user.patients;
             console.log("ID: " + id + "PATS: " + pats);
+            console.log("TYPES " + typeof(id) + " " + typeof(pats));
             console.log("HERE" +pats.includes(id));
            // return (pats.indexOf(id) > -1);
         } else {

@@ -214,7 +214,7 @@ app.get('/getPatient', function(request, response){
         lastName: request.body['lastName'],
     };
 
-    response.send("request" + request.query.firstName;
+    response.send("request" + request.query.firstName);
 
     // var pat = db.collection('patients').findOne(patientQuery, function(err, patient) {
     // 	if(err){

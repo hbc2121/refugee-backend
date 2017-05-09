@@ -307,13 +307,21 @@ app.post('/addPatientToDoctor', function(request,response){
 //TODO
  function validPatient(id,doctor_name){
  
-    console.log(id,doctor_name);
 
-    var user = db.collection('doctors').findOne({username:doctor_name});
-    console.log(user);
+    db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
-    var pats = user.valueOf().patients;
-    
+        if(err){
+            response.send("error:unable to validate patient");
+        }
+
+        if(user){
+            var pats = user.patients;
+            console.log(pats);
+        } else {
+            response.send("error: cannot validate patient")
+        }
+    });
+  
     return true;
  }
 

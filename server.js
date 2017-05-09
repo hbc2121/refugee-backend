@@ -313,14 +313,27 @@ app.post('/addPatientToDoctor', function(request,response){
     };
 
 
-    var pat = db.collection('patients').findOne(patientQuery);
+    db.collection('patients').findOne(patientQuery, function(err,pat){
 
-     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
-        if (err) {
-            response.send({ "message": "error: unable to add patient"});
-        } else {
-            response.send(200);
+        if(err){
+            response.send("error:unable to add patient")
+
         }
+
+        if(pat){
+            db.collection('doctors').updateOne(request.body['username'], {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
+                if (err) {
+                    response.send({ "message": "error: unable to add patient"});
+                } else {
+                    response.send(200);
+                }
+            });
+            
+        } else {
+            response.send("error:unable to add patient")
+
+        }
+
     });
 
 });

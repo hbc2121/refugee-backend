@@ -305,7 +305,8 @@ app.post('/addPatientToDoctor', function(request,response){
  
     var user = db.collection('doctors').findOne({username:doctor_name});
     var patients = user.patients;
- 
+    
+    console.log(patients);
     return patients.indexOf(id) > -1;
  }
 

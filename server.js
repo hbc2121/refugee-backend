@@ -312,9 +312,9 @@ app.post('/addPatientToDoctor', function(request,response){
         dateOfBirth: request.body['dob']
     };
 
-
+    console.log(patientQuery);
     db.collection('patients').findOne(patientQuery, function(err,pat){
-
+        console.log("pat " + pat);
         if(err){
             response.send("error:unable to add patient")
         }

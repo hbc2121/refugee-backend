@@ -317,20 +317,23 @@ app.post('/addPatientToDoctor', function(request,response){
 
         if(err){
             response.send("error:unable to add patient")
-
         }
 
         if(pat){
             db.collection('doctors').updateOne(request.body['username'], {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
                 if (err) {
                     response.send({ "message": "error: unable to add patient"});
-                } else {
+                } 
+                if(doctor) {
                     response.send(200);
                 }
+                else {
+                    response.send("error:unable to add patient to doctor");
+                }                
             });
-            
+
         } else {
-            response.send("error:unable to add patient")
+            response.send("error:unable to find patient");
 
         }
 

@@ -308,7 +308,7 @@ app.post('/addPatientToDoctor', function(request,response){
  function validPatient(id,doctor_name){
  
     var user = db.collection('doctors').findOne({username:doctor_name});
-    var pats = user.patients;
+    var pats = user.valueOf().patients;
     
     console.log(pats);
     return true;

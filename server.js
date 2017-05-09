@@ -312,7 +312,7 @@ app.post('/addPatientToDoctor', function(request,response){
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
-            response.send("error:unable to validate patient");
+            return false;
         }
 
         if(user){
@@ -320,11 +320,11 @@ app.post('/addPatientToDoctor', function(request,response){
             console.log(pats.indexOf(id));
             return (pats.indexOf(id) > -1);
         } else {
-            response.send("error: cannot validate patient")
+            return false;
         }
     });
   
-  response.send("error:unable to validate patient");
+  return false;
  }
 
 

@@ -312,6 +312,7 @@ app.post('/addPatientToDoctor', function(request,response){
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
+            console.log("s1");
             return false;
         }
 
@@ -320,10 +321,12 @@ app.post('/addPatientToDoctor', function(request,response){
             console.log(pats.indexOf(id));
             return (pats.indexOf(id) > -1);
         } else {
+            console.log("s2");
             return false;
         }
     });
   
+  console.log("s3");
   return false;
  }
 

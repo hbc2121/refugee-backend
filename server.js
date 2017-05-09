@@ -308,7 +308,7 @@ app.post('/addPatientToDoctor', function(request,response){
 //TODO
  function validPatient(id,doctor_name){
  
-
+    console.log(id);
     db.collection('doctors').findOne({username:doctor_name}, function(err,user){
 
         if(err){
@@ -318,6 +318,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
         if(user){
             var pats = user.patients;
+            console.log(pats);
             console.log(pats.indexOf(id));
             return (pats.indexOf(id) > -1);
         } else {

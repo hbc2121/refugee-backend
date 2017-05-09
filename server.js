@@ -145,6 +145,7 @@ function assert(condition, message) {
 /****************************************************************
 *					PATIENT FUNCTIONS							*
 ****************************************************************/
+//THIS WORKS
 app.post('/addNewPatient', function(request, response) {
     var patientFirstName = request.body['firstName'];
     var patientLastName = request.body['lastName'];
@@ -183,9 +184,8 @@ app.post('/addNewPatient', function(request, response) {
     });
 });
 
-// TODO
+// NEED TO TEST
 app.post('/updatePatient', function(request,response) {
-	//first confirm doctor is allowed to view this patient
 
 	var d = new Date();
 	var date_string = JSON.stringify(d.getMonth() + 1) + '-'
@@ -205,9 +205,9 @@ app.post('/updatePatient', function(request,response) {
         }
     });
 
-    //add patient to doctor's list if not already there
 });
 
+//THIS WORKS
 app.get('/getPatient', function(request, response){
 
     var patientQuery = {
@@ -220,7 +220,11 @@ app.get('/getPatient', function(request, response){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-    		response.send(patient);
+            if(validPatient(patient._id,request.query.username)){
+                response.send(patient);
+            }else{
+                response.send("error: patient not in doctor list")
+            }
     	} else {
         	response.send("error: no patient found");
     	}
@@ -228,30 +232,13 @@ app.get('/getPatient', function(request, response){
 
 });
 
-app.post('/deletePatient', function(request,response) {
-    var patientFirstName = request.body['firstName'];
-    var patientLastName = request.body['lastName'];
-    var dob = request.body['dateOfBirth'];
-    var query = {
-        firstName: patientFirstName,
-        lastName: patientLastName,
-        dateOfBirth: dob
-    };
-	db.patient.remove(query, { justOne:true }, function(err, idk) {
-        if (err) {
-            response.send("error: failed to remove patient");
-        } else {
-            response.send(200);
-        }
-    });
-
-    // TODO: remove from all doctors' lists
-});
 
 /****************************************************************
 *					DOCTOR FUNCTIONS							*
 ****************************************************************/
 
+
+//THIS WORKS
 app.post('/login', function(request, response) {
     var user = request.body['username'];
     var password = request.body['password'];
@@ -273,6 +260,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
 });
 
+//THIS WORKS
 app.post('/addDoctor', function(request,response){
     var newDoctor = {
         username: request.body['username'],
@@ -290,29 +278,35 @@ app.post('/addDoctor', function(request,response){
     });
 });
 
-// TODO
-app.post('/removeDoctor', function(request,response){
+//TEST
+app.post('/addPatientToDoctor', function(request,response){
 
-	db.doctors.remove({username : request.body['username']});
+    var patientQuery = {
+        firstName: request.body['firstName'],
+        lastName: request.body['lastName'],
+    };
+
+
+    var pat = db.collection('patients').findOne(patientQuery);
+
+     db.collection('doctors').updateOne(request.body['username'], {$push: {patients: pat._id}}, function(err, doctor) {
+        if (err) {
+            reponse.send({ "message": "error: unable to add patient"});
+        } else {
+            response.send(200);
+        }
+    });
 
 });
 
-function removePatientFromDoctor(id){
 
-	var user = db.doctors.find({name:doctors_name});
-	var new_patients = user.patients;
+ function validPatient(id,doctor_name){
+ 
+    var user = db.collection('doctors').findOne({username:doctors_name});
+    var patients = user.patients;
+ 
+    return patients.indexOf(id) > -1;
+ }
 
-	var index = new_patients.indexOf(id);
-	new_patients.splice(index,1);
-
-		db.doctors.update(
-
-		{name:doctor_name},
-
-		{patients:new_patients}
-
-	);
-
-}
 
 app.listen(process.env.PORT || 3000);

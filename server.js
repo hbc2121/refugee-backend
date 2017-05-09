@@ -320,7 +320,7 @@ app.post('/addPatientToDoctor', function(request,response){
             console.log("ID: " + id + "PATS: " + pats);
             console.log("TYPES " + typeof(id) + " " + typeof(pats[0]));
             console.log("HERE" +pats.includes(id));
-           // return (pats.indexOf(id) > -1);
+            return (pats.incldues(id) > -1);
         } else {
             return false;
         }

@@ -309,7 +309,7 @@ app.post('/addPatientToDoctor', function(request,response){
     var patientQuery = {
         firstName: request.body['firstName'],
         lastName: request.body['lastName'],
-        dateOfBirth: request.body['dob']
+        dateOfBirth: request.body['dateOfBirth']
     };
 
     console.log(patientQuery);

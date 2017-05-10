@@ -318,7 +318,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             }
 
-            while(patienty_array.length != patients.length){
+            while(patient_array.length != patients.length){
 
             }
 

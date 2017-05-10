@@ -361,7 +361,7 @@ db.collection('patients').findOne(patientQuery, function(err,pat){
         var patientQuery = {
         firstName: request.query.firstName,
         lastName: request.query.lastName,
-        dateOfBirth: request.query.dateOfBirth;
+        dateOfBirth: request.query.dateOfBirth
         };
 
         if(err){

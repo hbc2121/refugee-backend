@@ -7,7 +7,6 @@ var path = require('path');
 var ObjectId = require('mongodb').ObjectId; 
 var mongoose = require('mongoose');
 
-
 //Mongo initialization and connect to database
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
 var mongoUri = "mongodb://main:password1@ds127389.mlab.com:27389/heroku_5qlth62f";
@@ -310,9 +309,12 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("patient id " + patients[i]);
 
-                var o_id = mongoose.Types.ObjectId(patients[i]);
+                var id = patients[i].replace(/"/g, "'");
+                // console.log(id);
+                // var o_id = new ObjectId(id);
+                // console.log(o_id);
 
-                console.log(o_id);
+                var o_id = mongoose.Types.ObjectId(id);
 
                 db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){

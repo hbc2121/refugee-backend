@@ -318,11 +318,14 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         console.log(key + documents[x][key]);
                         }
                     }
-                });
-                if (i == patients.length - 1) {
+                if (i == (patients.length - 1)) {
                     console.log("PATIENT ARRAY TO SEND " + patient_array);
                     response.send(patient_array);
                 }
+                    
+                });
+
+
             }
 
             // while(true){

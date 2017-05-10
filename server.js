@@ -286,17 +286,18 @@ app.post('/login', function(request, response) {
 // TODO
 app.get('/getPatientsOfDoctor', function(request, response) {
 
-    db.collection('doctors').findOne(request.body['username'], function(err,patients){
+    db.collection('doctors').findOne(request.body['username'], function(err,doctor){
 
         if(err){
             response.send("error: cannot query doctor ");
         }
 
-        if(patients){
+        if(doctor){
+
+            var patients = doctor.patients;
+            var patient_array;
 
             console.log("PATIENTS " + patients);
-
-            var patient_array;
 
             for(i = 0; i < patients.length; i++){
 

@@ -294,15 +294,14 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
         if(patients){
 
-
             console.log("PATIENTS " + patients);
 
             var patient_array;
 
-            for(i = 0; i < patients.length; i++){
+            for(i = 0; i < patients.valueof().length; i++){
 
                 console.log("first patient " + patients[0]);
-                
+
                 db.collection('patients').findOne(patients[i],function(err,found_patient){
                     if(err){
                         response.send("error: cannot query patient");

@@ -342,6 +342,8 @@ app.post('/addDoctor', function(request,response){
 //TEST
 app.post('/addPatientToDoctor', function(request,response){
 
+        console.log("request: " , request);
+
        var patientQuery = {
             firstName: request.body['firstName'],
             lastName: request.body['lastName'],

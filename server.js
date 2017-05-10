@@ -303,11 +303,16 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             var query_array = new Array();
 
             console.log(patients.length);
-            for(i = 0; i < patients.length; i++){
+            //for(i = 0; i < patients.length; i++){
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
+                var o_id2 = mongoose.Types.ObjectId('59139394f608f50004838009');
+                var o_id3 = mongoose.Types.ObjectId('59139401f608f5000483800a');
                 query_array.push({_id: o_id});
+                query_array.push({_id: o_id2});
+                query_array.push({_id: o_id3});
 
-            }
+
+            //}
             console.log(query_array);
 
             db.collection('patients').find({$or : query_array}).toArray(function(err,documents){

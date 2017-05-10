@@ -300,7 +300,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             var patients = doctor.patients;
             var patient_array = new Array();
 
-
+            var shit = true;
             for(i = 0; i < patients.length; i++){
 
                 var id = patients[i].replace(/"/g, "'");
@@ -320,38 +320,18 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         }
                     }
                 });
-
-                // if(!found_patient){
-                //     console.log("NO PATIENT");
-                // }
-
-                // if(found_patient == {}){
-                //     console.log("EMPTY PATIENT");
-                // }
-
-                // for(var key in found_patient){
-                //     console.log("YOOOOO " + key);
-                // }
-
-                // var patient_query = {
-
-                //         "firstName": found_patient.firstName,
-                //         "lastName": found_patient.lastName,
-                //         "dateOfBirth": found_patient.dateOfBirth,
-                //         "visits": found_patient.visits
-                // };
-
-                // console.log(JSON.stringify(found_patient));
-
-
-                // patient_array.push(patient_query);
-                
-                // console.log("PATIENT ARRAY  " + patient_array);
-
+                if (i == patients.length - 1) {
+                    shit = false;
+                }
             }
 
-            console.log("PATIENT ARRAY TO SEND " + patient_array);
-            response.send(patient_array);
+            while(true){
+                if(!shit){
+                    console.log("PATIENT ARRAY TO SEND " + patient_array);
+                    response.send(patient_array);
+                    break;
+                }
+            }
         }
 
         else{

@@ -175,7 +175,7 @@ app.post('/addNewPatient', function(request, response) {
 
     var doctorQuery = { userName: request.body['username'] };
     console.log(request.body['username']);
-    
+
     db.collection('patients').findOne(patientQuery, function(err, pat) {
         db.collection('doctors').updateOne(doctorQuery, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, function(err, result) {
             if (err) {
@@ -302,7 +302,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             var patients = doctor.patients;
             var query_array = new Array();
 
-
+            console.log(patients.length);
             for(i = 0; i < patients.length; i++){
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
                 query_array.push({_id: o_id});

@@ -298,7 +298,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             var patient_array;
 
-            for(i = 0; i < patients.valueof().length; i++){
+            for(i = 0; i < patients.length; i++){
 
                 console.log("first patient " + patients[0]);
 

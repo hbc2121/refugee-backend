@@ -301,7 +301,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             console.log(doctor);
 
-            var patient_array = [];
+            patient_array = [];
 
             console.log("PATIENTS " + patients);
 

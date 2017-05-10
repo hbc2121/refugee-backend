@@ -312,9 +312,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                     console.log("length " + documents.length)
                     for(var x in documents){
-                        for(key in documents[x]){
-                            console.log("HI " + documents[x][key]);
-                        }
+                        patient_array.push(documents[x]);
                     }
                 });
 

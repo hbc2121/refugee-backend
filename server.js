@@ -313,7 +313,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     else{
                         response.send("error: cannot find patient");
                     }
-                })
+                });
             }
 
             console.log("PATIENT ARRAY " + patient_array);
@@ -324,7 +324,6 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             response.send("error: cannot find doctor");
         }
 
-        }
     });
 
 });

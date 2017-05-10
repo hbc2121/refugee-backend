@@ -354,13 +354,10 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             console.log("PATIENT ARRAY TO SEND " + patient_array);
             response.send(patient_array);
-        }
 
-        else{
-            response.send("error: cannot find doctor");
-        }
+        });
 
-    });
+
 
 });
 

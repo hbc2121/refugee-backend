@@ -309,28 +309,12 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 db.collection('patients').findOne({ _id : o_id}, function(err,documents){
 
                         patient_array.push(documents);
-                        response.send(patient_array);
-
-                        // console.log("PATIENT ARRAY " + patient_array);
-
-                        // for(key in documents[x]){
-                        //     console.log(key + documents[x][key]);
-                        // }
-
-                    });
-
-                }
-
+                });
 
             }
 
-        //     console.log("PATIENT ARRAY TO SEND " + patient_array);
-        //     response.send(patient_array);
-        // }
-
-        // else{
-        //     response.send("error: cannot find doctor");
-        // }
+                response.send(patient_array);
+            }
 
     });
 

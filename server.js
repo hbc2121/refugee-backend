@@ -174,6 +174,8 @@ app.post('/addNewPatient', function(request, response) {
     };
 
     var doctorQuery = { userName: request.body['username'] };
+    console.log(request.body['username']);
+    
     db.collection('patients').findOne(patientQuery, function(err, pat) {
         db.collection('doctors').updateOne(doctorQuery, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, function(err, result) {
             if (err) {

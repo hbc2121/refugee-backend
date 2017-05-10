@@ -307,21 +307,19 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 console.log("id " + id);
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
-                // var found_patient = 
-                documents = db.collection('patients').find({ _id : o_id}).toArray()
+                document = db.collection('patients').find({ _id : o_id}).toArray();
 
-                console.log("length " + documents.length)
-                for(var x in documents){
-                    console.log(documents[x]);
-                       patient_array.push(documents[x]);
-            console.log("PATIENT ARRAY " + patient_array);
+                    console.log("length " + documents.length)
+                    for(var x in documents){
+                        console.log(documents[x]);
+                        patient_array.push(documents[x]);
+                        console.log("PATIENT ARRAY " + patient_array);
 
                         for(key in documents[x]){
-
-                            console.log(key + documents[x][key]);
+                        console.log(key + documents[x][key]);
                         }
                     }
-                }
+               
 
                 // if(!found_patient){
                 //     console.log("NO PATIENT");
@@ -354,10 +352,13 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             console.log("PATIENT ARRAY TO SEND " + patient_array);
             response.send(patient_array);
+        }
 
-        });
+        else{
+            response.send("error: cannot find doctor");
+        }
 
-
+    });
 
 });
 

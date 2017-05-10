@@ -361,10 +361,11 @@ app.post('/addPatientToDoctor', function(request,response){
         console.log("Doctor Query: " , doctorQuery);
 
 
-        var patient = db.collection('patients').findOne(patientQuery) 
+        var patient = db.collection('patients').findOne(patientQuery); 
         var id = JSON.stringify(patient.valueOf()._id);
 
-        console.log("Patient " + patient);
+        console.log("Patient " , patient);
+        console.log("Value Of " , patient.valueOf());
         console.log("ID " + id);
 
         db.collection('doctors').updateOne(doctorQuery,{$push: {patients:'591338e9de3c45000401ffa3'}},function(err,success){

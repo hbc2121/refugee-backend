@@ -358,6 +358,12 @@ app.post('/addPatientToDoctor', function(request,response){
 
 db.collection('patients').findOne(patientQuery, function(err,pat){
 
+        var patientQuery = {
+        firstName: request.query.firstName,
+        lastName: request.query.lastName,
+        dateOfBirth: request.query.dateOfBirth;
+        };
+
         if(err){
             response.send("error:unable to add patient")
         }

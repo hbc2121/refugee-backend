@@ -300,7 +300,6 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             var patients = doctor.patients;
             var patient_array = new Array();
 
-            var shit = true;
             for(i = 0; i < patients.length; i++){
 
                 var id = patients[i].replace(/"/g, "'");
@@ -321,17 +320,17 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     }
                 });
                 if (i == patients.length - 1) {
-                    shit = false;
+                    response.send(patient_array);
                 }
             }
 
-            while(true){
-                if(!shit){
-                    console.log("PATIENT ARRAY TO SEND " + patient_array);
-                    response.send(patient_array);
-                    break;
-                }
-            }
+            // while(true){
+            //     if(!shit){
+            //         console.log("PATIENT ARRAY TO SEND " + patient_array);
+            //         response.send(patient_array);
+            //         break;
+            //     }
+            // }
         }
 
         else{

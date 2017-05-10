@@ -298,29 +298,25 @@ app.get('/getPatientsOfDoctor', function(request, response) {
         if(doctor){
 
             var patients = doctor.patients;
-
-            console.log(doctor);
-
             var patient_array = new Array();
 
-            console.log("PATIENTS " + patients);
 
             for(i = 0; i < patients.length; i++){
 
-                console.log("patient id " + patients[i]);
-
                 var id = patients[i].replace(/"/g, "'");
-                // console.log(id);
-                // var o_id = new ObjectId(id);
-                // console.log(o_id);
-
                 console.log("id " + id);
-
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
                 var found_patient = db.collection('patients').findOne({ _id : o_id});
+                var patient_query = {
 
-                patient_array.push(found_patient);
+                        "firstName": found_patient.firstName,
+                        "lastName": found_patient.lastName,
+                        "dateOfBirth": found_patient.dateOfBirth,
+                        "visits": found_patient.visits
+                };
+
+                patient_array.push(patient_query);
 
 
                 // ,function(err,found_patient){
@@ -337,7 +333,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 //     }
                 // });
                 
-                console.log("PATIENT ARRAY out " + patient_array);
+                console.log("PATIENT ARRAY  " + patient_array);
 
             }
 

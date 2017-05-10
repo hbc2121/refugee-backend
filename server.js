@@ -347,8 +347,13 @@ app.post('/addDoctor', function(request,response){
 });
 
 
-//TEST
 app.post('/addPatientToDoctor', function(request,response){
+
+    response.send(200);
+}
+
+//TEST
+app.post('/addPatientToDoctorTEST', function(request,response){
 
 db.collection('patients').findOne(patientQuery, function(err,pat){
         if(err){
@@ -375,6 +380,7 @@ db.collection('patients').findOne(patientQuery, function(err,pat){
 
     });
     
+    response.send(200);
 
 });
 

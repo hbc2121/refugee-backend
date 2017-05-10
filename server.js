@@ -316,7 +316,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("id " + id);
 
-                var o_id = mongoose.Types.ObjectId('5912265696975a00049c6f66');
+                var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
                 db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){

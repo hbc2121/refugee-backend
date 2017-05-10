@@ -317,13 +317,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         for(key in documents[x]){
                             console.log(key + documents[x][key]);
                         }
-                    }
-                    while(true) {
-                        if (i == (patients.length - 1)) {
-                           console.log("PATIENT ARRAY TO SEND " + patient_array);
-                            response.send(patient_array);
-                            break;
-                        }
+
                     }
 
                 });
@@ -331,13 +325,8 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             }
 
-            // while(true){
-            //     if(!shit){
-            //         console.log("PATIENT ARRAY TO SEND " + patient_array);
-            //         response.send(patient_array);
-            //         break;
-            //     }
-            // }
+            console.log("PATIENT ARRAY TO SEND " + patient_array);
+            response.send(patient_array);
         }
 
         else{
@@ -345,6 +334,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
         }
 
     });
+
 
 });
 

@@ -317,12 +317,13 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         for(key in documents[x]){
                             console.log(key + documents[x][key]);
                         }
-
+                    }
+                    while(true) {
                         if (i == (patients.length - 1)) {
-                            console.log("PATIENT ARRAY TO SEND " + patient_array);
+                           console.log("PATIENT ARRAY TO SEND " + patient_array);
                             response.send(patient_array);
+                            break;
                         }
-
                     }
 
                 });

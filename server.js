@@ -5,6 +5,7 @@ var fs = require('fs');
 var app = express();
 var path = require('path');
 var ObjectId = require('mongodb').ObjectId; 
+var mongoose = require('mongoose');
 
 
 //Mongo initialization and connect to database
@@ -309,10 +310,10 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("patient id " + patients[i]);
 
-                var id = patients[i].replace(/"/g, "'");
-                console.log(id);
-                var o_id = new ObjectId(id);
+                var o_id = mongoose.Types.ObjectId(patients[i]);
+
                 console.log(o_id);
+
                 db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){
                         response.send("error: cannot query patient");

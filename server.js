@@ -321,7 +321,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                             console.log(key + documents[x][key]);
                         }
                     }
-                });
+                }
 
                 // if(!found_patient){
                 //     console.log("NO PATIENT");

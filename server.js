@@ -314,26 +314,27 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         patient_array.push(documents[x]);
                         response.send(patient_array);
                         return;
-                        console.log("PATIENT ARRAY " + patient_array);
-
-                        for(key in documents[x]){
-                            console.log(key + documents[x][key]);
-                        }
-
                     }
+                        // console.log("PATIENT ARRAY " + patient_array);
 
-                });
+                        // for(key in documents[x]){
+                        //     console.log(key + documents[x][key]);
+                        // }
+
+                    });
+
+                }
 
 
             }
 
-            console.log("PATIENT ARRAY TO SEND " + patient_array);
-            response.send(patient_array);
-        }
+        //     console.log("PATIENT ARRAY TO SEND " + patient_array);
+        //     response.send(patient_array);
+        // }
 
-        else{
-            response.send("error: cannot find doctor");
-        }
+        // else{
+        //     response.send("error: cannot find doctor");
+        // }
 
     });
 

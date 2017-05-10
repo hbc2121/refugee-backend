@@ -316,6 +316,10 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     console.log("EMPTY PATIENT");
                 }
 
+                for(var key in found_patient){
+                    console.log(key + JSON.stringify(found_patient[key])
+                }
+
                 var patient_query = {
 
                         "firstName": found_patient.firstName,

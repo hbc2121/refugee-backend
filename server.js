@@ -317,6 +317,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 };
 
                 console.log(JSON.stringify(found_patient));
+
                 
                 patient_array.push(patient_query);
                 

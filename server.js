@@ -316,6 +316,11 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         "visits": found_patient.visits
                 };
 
+                console.log(found_patient.firstName);
+                console.log(found_patient.lastName);
+                console.log(found_patient.dateOfBirth);
+                console.log(found_patient.visits);
+
                 patient_array.push(patient_query);
 
 
@@ -337,7 +342,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             }
 
-            console.log("PATIENT ARRAY " + patient_array);
+            console.log("PATIENT ARRAY TO SEND " + patient_array);
             response.send(patient_array);
         }
 

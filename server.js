@@ -308,6 +308,14 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
                 var found_patient = db.collection('patients').findOne({ _id : o_id});
+                if(!found_patient){
+                    console.log("NO PATIENT");
+                }
+
+                if(found_patient == {}){
+                    console.log("EMPTY PATIENT");
+                }
+
                 var patient_query = {
 
                         "firstName": found_patient.firstName,
@@ -318,7 +326,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log(JSON.stringify(found_patient));
 
-                
+
                 patient_array.push(patient_query);
                 
                 console.log("PATIENT ARRAY  " + patient_array);

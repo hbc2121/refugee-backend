@@ -307,10 +307,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 console.log("id " + id);
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
-                var documents = db.collection('patients').find({ _id : o_id}).toArray();
+                db.collection('patients').find({ _id : o_id}).toArray(function(err,documents){
 
-                    console.log(documents)
-                    
+                    console.log("length " + documents.length)
                     for(var x in documents){
                         console.log(documents[x]);
                         patient_array.push(documents[x]);
@@ -320,7 +319,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         console.log(key + documents[x][key]);
                         }
                     }
-               
+                });
 
                 // if(!found_patient){
                 //     console.log("NO PATIENT");

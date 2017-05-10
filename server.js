@@ -318,20 +318,26 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
-                db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
-                    if(err){
-                        response.send("error: cannot query patient");
-                    }
+                var found_patient = db.collection('patients').findOne({ _id : o_id});
 
-                    if(found_patient){
+                patient_array.push(found_patient);
 
-                        console.log("FOUND PATIENT: " + found_patient);
-                        patient_array.push(found_patient);
-                        console.log("PATIENT ARRAY in" + patient_array);
 
-                    }
-                });
-                                        console.log("PATIENT ARRAY out" + patient_array);
+                // ,function(err,found_patient){
+                //     if(err){
+                //         response.send("error: cannot query patient");
+                //     }
+
+                //     if(found_patient){
+
+                //         console.log("FOUND PATIENT: " + found_patient);
+                //         patient_array.push(found_patient);
+                //         console.log("PATIENT ARRAY in " + patient_array);
+
+                //     }
+                // });
+                
+                console.log("PATIENT ARRAY out " + patient_array);
 
             }
 

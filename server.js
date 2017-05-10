@@ -305,9 +305,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             for(i = 0; i < patients.length; i++){
 
-                console.log("first patient " + patients[0]);
+                console.log("patient id " + patients[i]);
 
-                db.collection('patients').findOne({_id: patients[i]},function(err,found_patient){
+                db.collection('patients').findOne({ _id : ObjectId(patients[i])},function(err,found_patient){
                     if(err){
                         response.send("error: cannot query patient");
                     }

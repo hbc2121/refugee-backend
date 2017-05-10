@@ -315,14 +315,16 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         console.log("PATIENT ARRAY " + patient_array);
 
                         for(key in documents[x]){
-                        console.log(key + documents[x][key]);
+                            console.log(key + documents[x][key]);
                         }
+
+                        if (i == (patients.length - 1)) {
+                            console.log("PATIENT ARRAY TO SEND " + patient_array);
+                            response.send(patient_array);
+                        }
+
                     }
-                if (i == (patients.length - 1)) {
-                    console.log("PATIENT ARRAY TO SEND " + patient_array);
-                    response.send(patient_array);
-                }
-                    
+
                 });
 
 

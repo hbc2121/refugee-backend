@@ -361,26 +361,34 @@ app.post('/addPatientToDoctor', function(request,response){
         console.log("Doctor Query: " , doctorQuery);
 
 
-        var patient = db.collection('patients').findOne(patientQuery); 
-        var id = JSON.stringify(patient.valueOf()._id);
-
-        console.log("Patient " , patient);
-        console.log("Value Of " , patient.valueOf());
-        console.log("ID " + id);
-
-        db.collection('doctors').updateOne(doctorQuery,{$push: {patients:'591338e9de3c45000401ffa3'}},function(err,success){
+        db.collection('patients').findOne(patientQuery, function(err, patient){
 
             if(err){
-                response.send("error: unable to query doctor");
+                response.send("error: unable to query patient");
             }
+            
+            var id = JSON.stringify(patient.valueOf()._id);
 
-            if(success){
-                response.send(200);
-            }
-            else{
-                response.send("error: unable to add patient to doctor");
-            }
-        });
+            console.log("Patient " , patient);
+            console.log("Value Of " , patient.valueOf());
+            console.log("ID " + id);
+
+
+            db.collection('doctors').updateOne(doctorQuery,{$push: {patients:'591338e9de3c45000401ffa3'}},function(err,success){
+
+                if(err){
+                    response.send("error: unable to query doctor");
+                }
+
+                if(success){
+                    response.send(200);
+                }
+                else{
+                    response.send("error: unable to add patient to doctor");
+                }
+            });
+
+        }); 
     
 });
 

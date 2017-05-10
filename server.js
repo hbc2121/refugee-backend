@@ -299,8 +299,12 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             var patients = doctor.patients;
             var patient_array = new Array();
+            var ready = false;
 
             for(i = 0; i < patients.length; i++){
+                if (i == patients.length - 1){
+                    ready = true;
+                }
 
                 var id = patients[i].replace(/"/g, "'");
                 console.log("id " + id);
@@ -311,10 +315,16 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         patient_array.push(documents);
                 });
 
+
             }
 
-                response.send(patient_array);
+            while(patienty_array.length != patients.length){
+
             }
+
+            response.send(patient_array);
+
+        }
 
     });
 

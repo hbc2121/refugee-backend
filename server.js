@@ -311,6 +311,11 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 db.collection('patients').find({ _id : o_id}).toArray(function(err,documents){
 
                     console.log("length " + documents.length)
+                    for(var x in documents){
+                        for(key in documents[x]){
+                            console.log("HI " + documents[x][key]);
+                        }
+                    }
                 });
 
                 // if(!found_patient){

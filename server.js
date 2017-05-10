@@ -312,7 +312,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                     console.log("length " + documents.length)
                     for(var x in documents){
+                        console.log(documents[x]);
                         for(key in documents[x]){
+
                             console.log(key + documents[x][key]);
                         }
                     }

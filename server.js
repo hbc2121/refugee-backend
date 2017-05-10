@@ -4,6 +4,8 @@ var pdfkit = require('pdfkit');
 var fs = require('fs');
 var app = express();
 var path = require('path');
+> var ObjectId = require('mongodb').ObjectId; 
+
 
 //Mongo initialization and connect to database
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
@@ -307,7 +309,8 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("patient id " + patients[i]);
 
-                db.collection('patients').findOne({ _id : ObjectId(patients[i])},function(err,found_patient){
+                var o_id = new ObjectId(patients[i]);
+                db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){
                         response.send("error: cannot query patient");
                     }

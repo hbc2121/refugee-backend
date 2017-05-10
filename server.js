@@ -313,32 +313,32 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     console.log("length " + documents.length)
                 });
 
-                if(!found_patient){
-                    console.log("NO PATIENT");
-                }
+                // if(!found_patient){
+                //     console.log("NO PATIENT");
+                // }
 
-                if(found_patient == {}){
-                    console.log("EMPTY PATIENT");
-                }
+                // if(found_patient == {}){
+                //     console.log("EMPTY PATIENT");
+                // }
 
-                for(var key in found_patient){
-                    console.log("YOOOOO " + key);
-                }
+                // for(var key in found_patient){
+                //     console.log("YOOOOO " + key);
+                // }
 
-                var patient_query = {
+                // var patient_query = {
 
-                        "firstName": found_patient.firstName,
-                        "lastName": found_patient.lastName,
-                        "dateOfBirth": found_patient.dateOfBirth,
-                        "visits": found_patient.visits
-                };
+                //         "firstName": found_patient.firstName,
+                //         "lastName": found_patient.lastName,
+                //         "dateOfBirth": found_patient.dateOfBirth,
+                //         "visits": found_patient.visits
+                // };
 
-                console.log(JSON.stringify(found_patient));
+                // console.log(JSON.stringify(found_patient));
 
 
-                patient_array.push(patient_query);
+                // patient_array.push(patient_query);
                 
-                console.log("PATIENT ARRAY  " + patient_array);
+                // console.log("PATIENT ARRAY  " + patient_array);
 
             }
 

@@ -309,7 +309,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("patient id " + patients[i]);
 
-                var o_id = new ObjectId(patients[i]);
+                var o_id = new ObjectId(JSON.stringify(patients[i]);
                 db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){
                         response.send("error: cannot query patient");

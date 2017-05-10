@@ -317,7 +317,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 }
 
                 for(var key in found_patient){
-                    console.log(key + JSON.stringify(found_patient[key])
+                    console.log(key + JSON.stringify(found_patient[key]));
                 }
 
                 var patient_query = {

@@ -327,8 +327,12 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                         console.log("FOUND PATIENT: " + found_patient);
                         patient_array.push(found_patient);
+                        console.log("PATIENT ARRAY in" + patient_array);
+
                     }
                 });
+                                        console.log("PATIENT ARRAY out" + patient_array);
+
             }
 
             console.log("PATIENT ARRAY " + patient_array);

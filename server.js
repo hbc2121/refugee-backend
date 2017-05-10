@@ -309,7 +309,8 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 var documents = db.collection('patients').find({ _id : o_id}).toArray();
 
-                    console.log("length " + documents.length)
+                    console.log(documents)
+                    
                     for(var x in documents){
                         console.log(documents[x]);
                         patient_array.push(documents[x]);

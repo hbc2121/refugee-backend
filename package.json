@@ -1,11 +1,12 @@
 {
-	"name": "RefugeeApplication",
-	"version": "0.0.1",
-	"dependencies": {
-		"express": "latest",
-		"mongodb": "latest",
-		"body-parser": "latest",
-		"pdfkit": "latest",
-		"nodemailer": "latest"
-	}
+  "name": "RefugeeApplication",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "mongodb": "latest",
+    "mongoose": "^4.9.8",
+    "nodemailer": "latest",
+    "pdfkit": "latest"
+  }
 }

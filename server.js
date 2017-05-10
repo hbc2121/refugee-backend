@@ -298,31 +298,27 @@ app.get('/getPatientsOfDoctor', function(request, response) {
         if(doctor){
 
             var patients = doctor.patients;
-            var patient_array = new Array();
-            var ready = false;
+            var query_array = new Array();
+
 
             for(i = 0; i < patients.length; i++){
-                if (i == patients.length - 1){
-                    ready = true;
-                }
-
-                var id = patients[i].replace(/"/g, "'");
-                console.log("id " + id);
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
-
-                db.collection('patients').findOne({ _id : o_id}, function(err,documents){
-
-                        patient_array.push(documents);
-                });
-
+                query_array.push({_id: o_id});
 
             }
+            console.log(query_array);
+                // if (i == patients.length - 1){
+                //     ready = true;
+                // }
 
-            while(patient_array.length != patients.length){
+                // var id = patients[i].replace(/"/g, "'");
+                // console.log("id " + id);
 
-            }
 
-            response.send(patient_array);
+            db.collection('patients').find({$or : query_array}).toArray(function(err,documents){
+                    console.log(documents);
+                    response.send(documents);
+            });
 
         }
 

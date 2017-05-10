@@ -343,42 +343,71 @@ app.post('/addDoctor', function(request,response){
 app.post('/addPatientToDoctor', function(request,response){
 
        var patientQuery = {
-        firstName: request.body['firstName'],
-        lastName: request.body['lastName'],
-        dateOfBirth: request.body['dateOfBirth']
+            firstName: request.body['firstName'],
+            lastName: request.body['lastName'],
+            dateOfBirth: request.body['dateOfBirth']
         };
 
-        console.log("patient query " + patientQuery);
 
-        db.collection('patients').findOne(patientQuery, function(err,pat){
-
-        if(err){
-            response.send("error:unable to add patient")
+        var doctorQuery = {
+            username: request.body['username']
         }
 
-        if(pat){
 
-            console.log("PAT " + pat);
-            db.collection('doctors').updateOne({username: request.body['username']}, {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
-                if (err) {
-                    response.send({ "message": "error: unable to add patient"});
-                } 
-                if(doctor) {
+        console.log("Patient Query: " + patientQuery);
+        console.log("Doctor Query: " + doctorQuery);
 
-                    console.log("DOCTOR " + doctor);
-                    response.send(200);
-                }
-                else {
-                    response.send("error:unable to add patient to doctor");
-                }                
-            });
 
-        } else {
-            response.send("error:unable to find patient");
+        var patient = db.collection('patients').findOne(patientQuery) 
+        var id = JSON.stringify(patient.valueOf()._id);
 
-        }
+        console.log("Patient " + patient);
+        console.log("ID " + id);
 
-    });
+        db.collection('doctors').updateOne(doctorQuery,{$push: {patients:id}},function(err,success){
+
+            if(err){
+                response.send("error: unable to query doctor");
+            }
+
+            if(success){
+
+                response.send(200);
+            }
+            else{
+                response.send("error: unable to add patient to doctor")
+            }
+        });
+
+    //     , function(err,pat){
+
+    //     if(err){
+    //         response.send("error:unable to add patient")
+    //     }
+
+    //     if(pat){
+
+    //         console.log("PAT " + pat);
+    //         db.collection('doctors').updateOne({username: request.body['username']}, {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
+    //             if (err) {
+    //                 response.send({ "message": "error: unable to add patient"});
+    //             } 
+    //             if(doctor) {
+
+    //                 console.log("DOCTOR " + doctor);
+    //                 response.send(200);
+    //             }
+    //             else {
+    //                 response.send("error:unable to add patient to doctor");
+    //             }                
+    //         });
+
+    //     } else {
+    //         response.send("error:unable to find patient");
+
+    //     }
+
+    // });
     
 });
 

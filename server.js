@@ -317,9 +317,6 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         console.log("FOUND PATIENT: " + found_patient);
                         patient_array.push(found_patient);
                     }
-                    else{
-                        response.send("error: cannot find patient");
-                    }
                 });
             }
 

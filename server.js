@@ -313,6 +313,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     console.log("length " + documents.length)
                     for(var x in documents){
                         console.log(documents[x]);
+                        patient_array.push(documents[x]);
+            console.log("PATIENT ARRAY " + patient_array);
+
                         for(key in documents[x]){
 
                             console.log(key + documents[x][key]);

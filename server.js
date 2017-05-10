@@ -364,7 +364,7 @@ app.post('/addPatientToDoctor', function(request,response){
         console.log("Patient " + patient);
         console.log("ID " + id);
 
-        db.collection('doctors').updateOne(doctorQuery,{$push: {patients:id}},function(err,success){
+        db.collection('doctors').updateOne(doctorQuery,{$push: {patients:'591338e9de3c45000401ffa3'}},function(err,success){
 
             if(err){
                 response.send("error: unable to query doctor");

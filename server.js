@@ -196,7 +196,11 @@ app.post('/updatePatient', function(request,response) {
         dateOfBirth: request.body['dateOfBirth']
     };
 
-    db.collection('patients').updateOne(query, {$push: {visits: request.body['visit']}}, function(err, patient) {
+
+    var visit = request.body['visit'];
+    visit['visitDate'] = date_string;
+
+    db.collection('patients').updateOne(query, {$push: {visits: visit}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
         } 
@@ -282,6 +286,46 @@ app.post('/login', function(request, response) {
 // TODO
 app.get('/getPatientsOfDoctor', function(request, response) {
 
+    db.collection('doctors').findOne(request.body['username'], function(err,patients){
+
+        if(err){
+            response.send("error: cannot query doctor ");
+        }
+
+        if(patients){
+
+            console.log("PATIENTS " + patients);
+
+            var patient_array;
+
+            for(i = 0; i < patients.length; i++){
+
+                db.collection('patients').findOne(patients[i],function(err,found_patient){
+                    if(err){
+                        response.send("error: cannot query patient");
+                    }
+
+                    if(found_patient){
+
+                        console.log("FOUND PATIENT: " + found_patient);
+                        patient_array.push(found_patient);
+                    }
+                    else{
+                        response.send("error: cannot find patient");
+                    }
+                })
+            }
+
+            console.log("PATIENT ARRAY " + patient_array);
+            response.send(patient_array);
+        }
+
+        else{
+            response.send("error: cannot find doctor");
+        }
+
+        }
+    });
 
 });
 
@@ -303,18 +347,11 @@ app.post('/addDoctor', function(request,response){
     });
 });
 
+
 //TEST
 app.post('/addPatientToDoctor', function(request,response){
 
-    var patientQuery = {
-        firstName: request.body['firstName'],
-        lastName: request.body['lastName'],
-        dateOfBirth: request.body['dateOfBirth']
-    };
-
-    console.log(patientQuery);
-    db.collection('patients').findOne(patientQuery, function(err,pat){
-        console.log("pat " + pat);
+db.collection('patients').findOne(patientQuery, function(err,pat){
         if(err){
             response.send("error:unable to add patient")
         }
@@ -326,7 +363,10 @@ app.post('/addPatientToDoctor', function(request,response){
                 } 
                 if(doctor) {
                     response.send(200);
-                }          
+                }
+                else {
+                    response.send("error:unable to add patient to doctor");
+                }                
             });
 
         } else {
@@ -335,6 +375,7 @@ app.post('/addPatientToDoctor', function(request,response){
         }
 
     });
+    
 
 });
 

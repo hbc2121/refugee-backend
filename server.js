@@ -307,7 +307,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                 console.log("id " + id);
                 var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
 
-                document = db.collection('patients').find({ _id : o_id}).toArray();
+                var document = db.collection('patients').find({ _id : o_id}).toArray();
 
                     console.log("length " + documents.length)
                     for(var x in documents){

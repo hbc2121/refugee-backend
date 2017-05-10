@@ -307,7 +307,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 var id = patients[i].replace(/"/g, "'");
                 console.log(id);
-                var o_id = mongoose.Types.ObjectId(id);
+                var o_id = mongoose.Types.ObjectId('591338e9de3c45000401ffa3');
                 query_array.push({_id: o_id});
             }
             console.log(query_array);

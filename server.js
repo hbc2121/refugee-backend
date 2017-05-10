@@ -302,18 +302,14 @@ app.get('/getPatientsOfDoctor', function(request, response) {
             var patients = doctor.patients;
             var query_array = new Array();
 
-            console.log(patients.length);
             for(i = 0; i < patients.length; i++){
 
                 var id = patients[i].replace(/"/g, "");
-                console.log(id);
                 var o_id = mongoose.Types.ObjectId(id);
                 query_array.push({_id: o_id});
             }
-            console.log(query_array);
 
             db.collection('patients').find({$or : query_array}).toArray(function(err,documents){
-                    console.log(documents);
                     response.send(documents);
             });
 
@@ -363,7 +359,7 @@ db.collection('patients').findOne(patientQuery, function(err,pat){
         if(pat){
 
             console.log("PAT " + pat);
-            db.collection('doctors').updateOne(request.body['username'], {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
+            db.collection('doctors').updateOne({username:request.body['username']}, {$push: {patients: JSON.stringify(pat.valueOf()._id)}}, function(err, doctor) {
                 if (err) {
                     response.send({ "message": "error: unable to add patient"});
                 } 

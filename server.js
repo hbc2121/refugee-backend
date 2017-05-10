@@ -287,7 +287,7 @@ app.post('/login', function(request, response) {
 app.get('/getPatientsOfDoctor', function(request, response) {
 
 
-    db.collection('doctors').findOne(request.query.username, function(err,doctor){
+    db.collection('doctors').findOne({username:request.query.username}, function(err,doctor){
 
         if(err){
             response.send("error: cannot query doctor ");

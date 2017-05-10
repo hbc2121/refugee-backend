@@ -309,6 +309,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
                 console.log("patient id " + patients[i]);
 
+                console.log(typeof(patients[i]) + typeof(JSON.stringify(patients[i])));
                 var o_id = new ObjectId(JSON.stringify(patients[i]));
                 db.collection('patients').findOne({ _id : o_id},function(err,found_patient){
                     if(err){

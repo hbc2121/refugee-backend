@@ -307,13 +307,6 @@ app.get('/getPatientsOfDoctor', function(request, response) {
 
             }
             console.log(query_array);
-                // if (i == patients.length - 1){
-                //     ready = true;
-                // }
-
-                // var id = patients[i].replace(/"/g, "'");
-                // console.log("id " + id);
-
 
             db.collection('patients').find({$or : query_array}).toArray(function(err,documents){
                     console.log(documents);
@@ -345,11 +338,6 @@ app.post('/addDoctor', function(request,response){
     });
 });
 
-
-// app.post('/addPatientToDoctor', function(request,response){
-
-//     response.send(200);
-// });
 
 //TEST
 app.post('/addPatientToDoctor', function(request,response){

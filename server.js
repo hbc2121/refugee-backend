@@ -295,6 +295,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
         if(doctor){
 
             var patients = doctor.patients;
+
+            console.log(doctor);
+
             var patient_array;
 
             console.log("PATIENTS " + patients);

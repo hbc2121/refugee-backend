@@ -320,6 +320,7 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                     }
                 });
                 if (i == patients.length - 1) {
+                    console.log("PATIENT ARRAY TO SEND " + patient_array);
                     response.send(patient_array);
                 }
             }

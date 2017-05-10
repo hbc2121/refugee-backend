@@ -316,27 +316,9 @@ app.get('/getPatientsOfDoctor', function(request, response) {
                         "visits": found_patient.visits
                 };
 
-                console.log(found_patient.firstName);
-                console.log(found_patient.lastName);
-                console.log(found_patient.dateOfBirth);
-                console.log(found_patient.visits);
-
+                console.log(JSON.stringify(found_patient));
+                
                 patient_array.push(patient_query);
-
-
-                // ,function(err,found_patient){
-                //     if(err){
-                //         response.send("error: cannot query patient");
-                //     }
-
-                //     if(found_patient){
-
-                //         console.log("FOUND PATIENT: " + found_patient);
-                //         patient_array.push(found_patient);
-                //         console.log("PATIENT ARRAY in " + patient_array);
-
-                //     }
-                // });
                 
                 console.log("PATIENT ARRAY  " + patient_array);
 

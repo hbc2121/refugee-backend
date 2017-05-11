@@ -259,6 +259,7 @@ app.get('/getPatient', function(request, response){
                 if(user){
                     var pats = user.patients;
                     console.log('Patient List ', pats);
+                    console.log('ID ', id);
                     var valid = (pats.includes(id));
                     console.log('Valid ', valid);
                         if(valid){

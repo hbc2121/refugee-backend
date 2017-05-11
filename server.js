@@ -165,7 +165,7 @@ app.post('/addNewPatient', function(request, response) {
         } else {
             db.collection('patients').findOne(patientQuery, function(err, pat) {
                 if (!err && pat) {
-                    reponse.send("error: patient already exists!");
+                    response.send("error: patient already exists!");
                     return;
                 } else {
                     coll.insert({

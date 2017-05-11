@@ -161,18 +161,24 @@ app.post('/addNewPatient', function(request, response) {
     db.collection('patients', function (err1, coll) {
         if (err1) {
             response.send({ "message": "error accessing \'patient\' collection"});
-            return;
         } else {
             coll.findOne(patientQuery, function(err2, pat) {
                 if (!err2 && pat) {
                     response.send("error: patient already exists!");
-                    return;
                 } else {
-                    coll.insert({
-                        firstName: patientFirstName,
-                        lastName: patientLastName,
-                        dateOfBirth: dob,
-                        visits: []
+                    coll.insert({ firstName: patientFirstName, lastName: patientLastName, dateOfBirth: dob, visits: []}, function (err3, idk) { 
+                        var doctorQuery = { username: request.body['username'] };
+                        var superuserQuery = { username: 'superuser'};
+
+                        db.collection('patients').findOne(patientQuery, function(err, pat) {
+                            db.collection('doctors').update({$or: [doctorQuery, superuserQuery]}, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, {multi: true}, function(err1, result1) {
+                                if (err1) {
+                                    response.send({ "message": "error updating patient list" });
+                                } else {
+                                    response.send(200);
+                                }
+                            });
+                        });
                     });
                 }
             });
@@ -180,18 +186,6 @@ app.post('/addNewPatient', function(request, response) {
         }
     });
 
-    var doctorQuery = { username: request.body['username'] };
-    var superuserQuery = { username: 'superuser'};
-
-    db.collection('patients').findOne(patientQuery, function(err, pat) {
-        db.collection('doctors').update({$or: [doctorQuery, superuserQuery]}, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, {multi: true}, function(err1, result1) {
-            if (err1) {
-                response.send({ "message": "error updating patient list" });
-            } else {
-                response.send(200);
-            }
-        });
-    });
 });
 
 //THIS WORKS

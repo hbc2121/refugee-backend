@@ -349,7 +349,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
         var doctorQuery = {
             username: request.body['username']
-        }
+        };
 
         db.collection('patients').findOne(patientQuery, function(err, patient){
 
@@ -361,6 +361,7 @@ app.post('/addPatientToDoctor', function(request,response){
             var id = get_id.replace(/"/g, "");
             console.log('ID ', id);
 
+            console.log("Doctor Query ", doctorQuery);
 
             db.collection('doctors').updateOne(doctorQuery,{$push: {patients:id}},function(err,success){
 

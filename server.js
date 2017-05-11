@@ -249,7 +249,8 @@ app.get('/getPatient', function(request, response){
             
 
             console.log("doctorQuery ", doctorQuery);
-            var id = patient.valueOf()._id;
+            var id = (patient.valueOf()._id).str;
+            console.log('Before ID ', id);
             db.collection('doctors').findOne(doctorQuery, function(err,user){
 
                 if(err){

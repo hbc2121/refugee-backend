@@ -237,6 +237,10 @@ app.get('/getPatient', function(request, response){
         dateOfBirth: request.query.dateOfBirth
     };
 
+    var doctorQuery = {
+        username: request.query.username
+    };
+
     db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	
@@ -244,8 +248,9 @@ app.get('/getPatient', function(request, response){
     	if(patient){
             
 
+            console.log("doctorQuery ", doctorQuery);
             var id = JSON.stringify(patient.valueOf()._id);
-            db.collection('doctors').findOne({username:request.query.username}, function(err,user){
+            db.collection('doctors').findOne(doctorQuery, function(err,user){
 
                 if(err){
                     response.send("error");
@@ -253,7 +258,9 @@ app.get('/getPatient', function(request, response){
 
                 if(user){
                     var pats = user.patients;
+                    console.log('Patient List ', pats);
                     var valid = (pats.includes(id));
+                    console.log('Valid ', valid);
                         if(valid){
                             response.send(patient);
                         } else {
@@ -381,6 +388,7 @@ app.post('/addPatientToDoctor', function(request,response){
                 }
 
                 if(success){
+                    console.log("SUCCESS");
                     response.send(200);
                 }
                 else{

@@ -159,6 +159,7 @@ app.post('/addNewPatient', function(request, response) {
     };
 
     db.collection('patients', function (err1, coll) {
+        
         if (err1) {
             response.send({ "message": "error accessing \'patient\' collection"});
         } else {

@@ -319,12 +319,22 @@ app.post('/addDoctor', function(request,response){
         patients: []
     }
 
-	db.collection('doctors').insert(newDoctor, function(err, idk) {
-        if (err) {
-            response.send({ "message": "failed to add doctor" });
-        } else {
-            response.send(200);
-        }
+    var doctorQuery = {
+        username: request.body['username'],
+        firstName: request.body['firstName'],
+        lastName: request.body['lastName']
+    };
+
+    db.collection('doctors').findOne(doctorQuery, function (err1, doc) {
+        db.collection('doctors').insert(newDoctor, function(err2, idk) {
+            if (!err1 && doc) {
+                response.send("error: doctor already exists! >:(");
+            } else if (err2) {
+                response.send({ "message": "failed to add doctor" });
+            } else {
+                response.send(200);
+            }
+        });
     });
 });
 

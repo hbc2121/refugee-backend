@@ -147,6 +147,7 @@ function assert(condition, message) {
 ****************************************************************/
 //THIS WORKS
 app.post('/addNewPatient', function(request, response) {
+
     var patientFirstName = request.body['firstName'];
     var patientLastName = request.body['lastName'];
     var dob = request.body['dateOfBirth'];
@@ -171,8 +172,8 @@ app.post('/addNewPatient', function(request, response) {
         dateOfBirth: dob
     };
 
-    var doctorQuery = { userName: request.body['username'] };
-    var superuserQuery = { userName: 'superuser'};
+    var doctorQuery = { username: request.body['username'] };
+    var superuserQuery = { username: 'superuser'};
 
     db.collection('patients').findOne(patientQuery, function(err, pat) {
         db.collection('doctors').update({$or: [doctorQuery, superuserQuery]}, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, {multi: true}, function(err1, result1) {
@@ -187,7 +188,6 @@ app.post('/addNewPatient', function(request, response) {
 
 //THIS WORKS
 app.post('/updatePatient', function(request,response) {
-
 	var d = new Date();
 	var date_string = JSON.stringify(d.getMonth() + 1) + '-'
                       + JSON.stringify(d.getDate()) + '-'
@@ -199,26 +199,23 @@ app.post('/updatePatient', function(request,response) {
         dateOfBirth: request.body['dateOfBirth']
     };
 
-
     var visit = request.body['visit'];
     visit['visitDate'] = date_string;
 
     db.collection('patients').updateOne(query, {$push: {visits: visit}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
-        } 
+        }
         if(patient)
             response.send(200);
         else {
             response.send("error: no patient found");
         }
     });
-
 });
 
 //THIS WORKS
 app.get('/getPatient', function(request, response){
-
     var patientQuery = {
         firstName: request.query.firstName,
         lastName: request.query.lastName,
@@ -234,12 +231,9 @@ app.get('/getPatient', function(request, response){
     		response.send("error: failed to retrieve patient");	
     	} 
     	if(patient){
-            
-
             console.log("doctorQuery ", doctorQuery);
             var id = patient['_id'].toString();
             db.collection('doctors').findOne(doctorQuery, function(err,user){
-
                 if(err){
                     response.send("error");
                 }
@@ -261,13 +255,10 @@ app.get('/getPatient', function(request, response){
                         response.send("error");
                 }
             });
-
-        }else{
+        } else {
                 response.send("error: no patient found")
         }
-
     });
-
 });
 
 
@@ -295,35 +286,26 @@ app.post('/login', function(request, response) {
 
 // THIS WORKS
 app.get('/getPatientsOfDoctor', function(request, response) {
-
-
-    db.collection('doctors').findOne({username:request.query.username}, function(err,doctor){
-
+    db.collection('doctors').findOne({username:request.query.username}, function(err, doctor) {
         if(err){
             response.send("error: cannot query doctor ");
         }
 
-        if(doctor){
-
+        if(doctor) {
             var patients = doctor.patients;
             var query_array = new Array();
 
-            for(i = 0; i < patients.length; i++){
-
+            for(i = 0; i < patients.length; i++) {
                 var id = patients[i].replace(/"/g, "");
                 var o_id = mongoose.Types.ObjectId(id);
                 query_array.push({_id: o_id});
             }
 
-            db.collection('patients').find({$or : query_array}).toArray(function(err,documents){
+            db.collection('patients').find({$or : query_array}).toArray(function(err, documents){
                     response.send(documents);
             });
-
         }
-
     });
-
-
 });
 
 //THIS WORKS
@@ -347,13 +329,11 @@ app.post('/addDoctor', function(request,response){
 
 //THIS WORKS
 app.post('/addPatientToDoctor', function(request,response){
-
        var patientQuery = {
             firstName: request.body['firstName'],
             lastName: request.body['lastName'],
             dateOfBirth: request.body['dateOfBirth']
         };
-
 
         var doctorQuery = {
             username: request.body['username']
@@ -385,10 +365,7 @@ app.post('/addPatientToDoctor', function(request,response){
                     response.send("error: unable to add patient to doctor");
                 }
             });
-
         }); 
-    
 });
-
 
 app.listen(process.env.PORT || 3000);

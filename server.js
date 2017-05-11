@@ -245,11 +245,11 @@ app.get('/getPatient', function(request, response){
 
                     var valid = (pats.includes(id));
                     console.log('Valid ', valid);
-                        if(valid){
-                            response.send(patient);
-                        } else {
-                            response.send("error: patient not in doctor list");
-                        }
+                    if(valid){
+                        response.send(patient);
+                    } else {
+                        response.send("error: patient not in doctor list");
+                    }
 
                  } else {
                         response.send("error");

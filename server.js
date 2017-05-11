@@ -158,13 +158,13 @@ app.post('/addNewPatient', function(request, response) {
         dateOfBirth: dob
     };
 
-    db.collection('patients', function (err, coll) {
-        if (err) {
+    db.collection('patients', function (err1, coll) {
+        if (err1) {
             response.send({ "message": "error accessing \'patient\' collection"});
             return;
         } else {
-            db.collection('patients').findOne(patientQuery, function(err, pat) {
-                if (!err && pat) {
+            db.collection('patients').findOne(patientQuery, function(err2, pat) {
+                if (!err2 && pat) {
                     response.send("error: patient already exists!");
                     return;
                 } else {

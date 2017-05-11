@@ -259,7 +259,7 @@ app.get('/getPatient', function(request, response){
                 if(user){
                     var pats = user.patients;
                     console.log('Patient List ', pats);
-                    var id_check = patients[i].replace(/"/g, "'");
+                    var id_check = id.replace(/"/g, "'");
                     console.log('ID ', id_check);
 
                     var valid = (pats.includes(id_check));

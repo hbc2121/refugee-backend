@@ -175,16 +175,12 @@ app.post('/addNewPatient', function(request, response) {
     var superuserQuery = { userName: 'superuser'};
 
     db.collection('patients').findOne(patientQuery, function(err, pat) {
-        db.collection('doctors').updateOne(doctorQuery, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, function(err1, result1) {
-            db.collection('doctors').updateOne(superuserQuery, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, function(err2, result2) {
+        db.collection('doctors').update({$or: [doctorQuery, superuserQuery]}, { $push: { patients: JSON.stringify(pat.valueOf()._id)}}, {multi: true}, function(err1, result1) {
             if (err1) {
-                response.send({ "message": "error updating patient list for doctor" });
-            } else if (err2) {
-                response.send({ "message": "error updating patient list for superuser" });
+                response.send({ "message": "error updating patient list" });
             } else {
                 response.send(200);
             }
-            });
         });
     });
 });

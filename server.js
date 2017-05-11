@@ -220,7 +220,7 @@ app.get('/getPatient', function(request, response){
     var patientQuery = {
         firstName: request.query.firstName,
         lastName: request.query.lastName,
-        dateOfBirth: require.query.dateOfBirth
+        dateOfBirth: request.query.dateOfBirth
     };
 
 

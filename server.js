@@ -351,7 +351,8 @@ app.post('/addPatientToDoctor', function(request,response){
             username: request.body['username']
         }
 
-
+        console.log('Patient Query: ', patientQuery);
+        
         db.collection('patients').findOne(patientQuery, function(err, patient){
 
             if(err){

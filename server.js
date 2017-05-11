@@ -152,25 +152,30 @@ app.post('/addNewPatient', function(request, response) {
     var patientLastName = request.body['lastName'];
     var dob = request.body['dateOfBirth'];
 
-    db.collection('patients', function (err, coll) {
-        if (err) {
-            response.send({ "message": "error accessing \'patient\' collection"});
-            return;
-        } else {
-            coll.insert({
-                firstName: patientFirstName,
-                lastName: patientLastName,
-                dateOfBirth: dob,
-                visits: []
-            });
-        }
-    });
-
     var patientQuery = {
         firstName: patientFirstName,
         lastName: patientLastName,
         dateOfBirth: dob
     };
+
+    db.collection('patients', function (err, coll) {
+        if (err) {
+            response.send({ "message": "error accessing \'patient\' collection"});
+            return;
+        } else {
+            db.collection('patients').findOne(patientQuery, function(err, pat) {
+                if (!err && pat) {
+                    coll.insert({
+                        firstName: patientFirstName,
+                        lastName: patientLastName,
+                        dateOfBirth: dob,
+                        visits: []
+                    });
+                }
+            });
+            
+        }
+    });
 
     var doctorQuery = { username: request.body['username'] };
     var superuserQuery = { username: 'superuser'};

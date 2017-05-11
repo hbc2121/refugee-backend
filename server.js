@@ -258,7 +258,7 @@ app.get('/getPatient', function(request, response){
 
                 if(user){
                     var pats = user.patients;
-                    console.log('Patient List ', pats , typeof(pats));
+                    console.log('Patient List ', pats , typeof(pats[3]));
                     var id_check = id.replace(/"/g, "'");
                     console.log('ID ', id_check, typeof(pats));
 

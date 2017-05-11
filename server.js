@@ -215,8 +215,6 @@ app.post('/updatePatient', function(request,response) {
     var visit = request.body['visit'];
     visit['visitDate'] = date_string;
 
-    console.log("Query " , query);
-
     db.collection('patients').updateOne(query, {$push: {visits: visit}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});

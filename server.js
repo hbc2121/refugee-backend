@@ -232,7 +232,7 @@ app.get('/getPatient', function(request, response){
     	} 
     	if(patient){
             console.log("doctorQuery ", doctorQuery);
-            var id = patient['_id'].toString();
+            var id = '\"' + patient['_id'].toString() + '\"';
             db.collection('doctors').findOne(doctorQuery, function(err,user){
                 if(err){
                     response.send("error");

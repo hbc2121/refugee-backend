@@ -357,7 +357,8 @@ app.post('/addPatientToDoctor', function(request,response){
                 response.send("error: unable to query patient");
             }
 
-            var id = JSON.stringify(patient.valueOf()._id);
+            var get_id = JSON.stringify(patient.valueOf()._id);
+            var id = get_id.replace(/"/g, "");
             console.log('ID ', id);
 
 

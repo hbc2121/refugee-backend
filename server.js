@@ -201,6 +201,8 @@ app.post('/updatePatient', function(request,response) {
     var visit = request.body['visit'];
     visit['visitDate'] = date_string;
 
+
+
     db.collection('patients').updateOne(query, {$push: {visits: visit}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
@@ -223,8 +225,8 @@ app.get('/getPatient', function(request, response){
         dateOfBirth: request.query.dateOfBirth
     };
 
-
-
+    console.log("Patient Query ", patientQuery);
+    
     db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	

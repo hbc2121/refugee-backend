@@ -162,8 +162,8 @@ app.post('/addNewPatient', function(request, response) {
         if (err1) {
             response.send({ "message": "error accessing \'patient\' collection"});
         } else {
-            coll.findOne(patientQuery, function(err2, pat) {
-                if (!err2 && pat) {
+            coll.findOne(patientQuery, function(err2, pat0) {
+                if (!err2 && pat0) {
                     response.send("error: patient already exists!");
                 } else {
                     coll.insert({ firstName: patientFirstName, lastName: patientLastName, dateOfBirth: dob, visits: []}, function (err3, idk) { 

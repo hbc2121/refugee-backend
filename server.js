@@ -259,7 +259,7 @@ app.get('/getPatient', function(request, response){
                 if(user){
                     var pats = user.patients;
                     console.log('Patient List ', pats , typeof(pats[3]));
-                    var id_check = JSON.stringfify(id.replace(/"/g, "'"));
+                    var id_check = JSON.stringify(id.replace(/"/g, "'"));
                     console.log('ID ', id_check, typeof(pats));
 
                     var valid = (pats.includes(id_check));

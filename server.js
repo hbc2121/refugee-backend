@@ -247,6 +247,8 @@ app.get('/getPatient', function(request, response){
                     console.log('Valid ', valid);
                     if(valid){
                         response.send(patient);
+                    } else if (pats.length == 0) {
+                        throw 'Patient array empty';
                     } else {
                         response.send("error: patient not in doctor list");
                     }

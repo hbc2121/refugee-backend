@@ -165,6 +165,9 @@ app.post('/addNewPatient', function(request, response) {
         } else {
             db.collection('patients').findOne(patientQuery, function(err, pat) {
                 if (!err && pat) {
+                    reponse.send("error: patient already exists!");
+                    return;
+                } else {
                     coll.insert({
                         firstName: patientFirstName,
                         lastName: patientLastName,
@@ -210,6 +213,7 @@ app.post('/updatePatient', function(request,response) {
     db.collection('patients').updateOne(query, {$push: {visits: visit}}, function(err, patient) {
         if (err) {
             reponse.send({ "message": "error: patient does not exist"});
+            return;
         }
         if(patient)
             response.send(200);
@@ -234,6 +238,7 @@ app.get('/getPatient', function(request, response){
     db.collection('patients').findOne(patientQuery, function(err, patient) {
     	if(err){
     		response.send("error: failed to retrieve patient");	
+            return;
     	} 
     	if(patient){
             console.log("doctorQuery ", doctorQuery);
@@ -241,6 +246,7 @@ app.get('/getPatient', function(request, response){
             db.collection('doctors').findOne(doctorQuery, function(err,user){
                 if(err){
                     response.send("error");
+                    return;
                 }
 
                 if(user){
@@ -252,8 +258,6 @@ app.get('/getPatient', function(request, response){
                     console.log('Valid ', valid);
                     if(valid){
                         response.send(patient);
-                    } else if (pats.length == 0) {
-                        throw 'Patient array empty';
                     } else {
                         response.send("error: patient not in doctor list");
                     }
@@ -333,7 +337,7 @@ app.post('/addDoctor', function(request,response){
     db.collection('doctors').findOne(doctorQuery, function (err1, doc) {
         db.collection('doctors').insert(newDoctor, function(err2, idk) {
             if (!err1 && doc) {
-                response.send("error: doctor already exists! >:(");
+                response.send("error: doctor already exists!");
             } else if (err2) {
                 response.send({ "message": "failed to add doctor" });
             } else {
@@ -360,6 +364,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
             if(err){
                 response.send("error: unable to query patient");
+                return;
             }
 
             var get_id = JSON.stringify(patient.valueOf()._id);
@@ -372,6 +377,7 @@ app.post('/addPatientToDoctor', function(request,response){
 
                 if(err){
                     response.send("error: unable to query doctor");
+                    return;
                 }
 
                 if(success){

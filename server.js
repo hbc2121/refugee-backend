@@ -260,10 +260,9 @@ app.get('/getPatient', function(request, response){
                 if(user){
                     var pats = user.patients;
                     console.log('Patient List ', pats , typeof(pats[3]));
-                    var id_check = id.replace(/"/g, "'");
-                    console.log('ID ', id_check, typeof(pats));
+                    console.log('ID ', id, typeof(id));
 
-                    var valid = (pats.includes(id_check));
+                    var valid = (pats.includes(id));
                     console.log('Valid ', valid);
                         if(valid){
                             response.send(patient);

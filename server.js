@@ -351,16 +351,15 @@ app.post('/addPatientToDoctor', function(request,response){
             username: request.body['username']
         }
 
-        console.log('Patient Query: ', patientQuery);
-
         db.collection('patients').findOne(patientQuery, function(err, patient){
 
             if(err){
                 response.send("error: unable to query patient");
             }
 
-            console.log('Patient ', patient);
             var id = JSON.stringify(patient.valueOf()._id);
+            console.log('ID ', id);
+
 
             db.collection('doctors').updateOne(doctorQuery,{$push: {patients:id}},function(err,success){
 
